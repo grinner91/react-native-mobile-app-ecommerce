@@ -12,12 +12,12 @@ export const ProductsList = (props) => {
   useEffect(() => {
     fetchAllProducts()
       .then((data) => {
-        console.log("ProductsList products: ", data);
+        //console.log("ProductsList products: ", data);
         setProducts(data);
         setFilteredProducts(data);
       })
       .catch((error) => {
-        console.log("data: ", data);
+        console.log("err: ", error);
       });
   }, []);
   return (

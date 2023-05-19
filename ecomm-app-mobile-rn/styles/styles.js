@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 150,
+    marginTop: 10,
     padding: 10,
   },
   list: {
@@ -51,8 +51,9 @@ export const styles = StyleSheet.create({
   title2: {
     fontSize: 20,
     fontWeight: "bold",
-    backgroundColor: "#fff8dc",
+    //backgroundColor: "#fff8dc",
     alignSelf: "stretch",
+    marginBottom: 5,
   },
   content: {
     fontSize: 16,
@@ -73,6 +74,9 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 2,
   },
+  quantity: {
+    borderColor: "#00bfff",
+    backgroundColor: "#f0ffff",
+    borderWidth: 1,
+  },
 });
-
-//alignSelf: "stretch",

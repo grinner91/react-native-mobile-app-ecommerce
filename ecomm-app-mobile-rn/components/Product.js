@@ -1,15 +1,39 @@
-import { Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { Text, View, Image } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import { styles } from "../styles/styles";
-import { SafeAreaView } from "react-native";
-import { Image } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { AppContext, ACTIONS } from "../services/app.context";
+import { Quantity } from "./Quantity";
 
 export const Product = ({ product }) => {
+  const { state, dispatch } = useContext(AppContext);
   const [quantity, setQuantity] = useState(0);
   useEffect(() => {
     //console.log("product details: ", product);
   }, []);
+
+  const onAddCart = () => {
+    if (quantity > 0) {
+      //console.log("quantity: ", quantity);
+      const newCartItem = {
+        product: product,
+        quantity: quantity,
+        total: parseInt(quantity) * parseFloat(product.price),
+      };
+
+      dispatch({
+        type: ACTIONS.ADD_TO_CART,
+        payload: newCartItem,
+      });
+
+      //console.log("state after add to cart: ", state.cart);
+    }
+  };
+
+  const onQuantityChange = (value) => {
+    setQuantity(value);
+  };
+
   const imageUri =
     "https://i5.walmartimages.com/asr/52a8a553-1dc9-4263-af1f-c8750bbf7605.b950d0f9a7eb260800e691affbc1e553.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF ";
 
@@ -22,26 +46,16 @@ export const Product = ({ product }) => {
           <Text> {" price " + product.price}</Text>
         </View>
       </View>
-      <View style={{ flexDirection: "row" }}>
+      <View style={[{ flexDirection: "row" }]}>
+        <Quantity {...{ onQuantityChange }} />
+
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
-            if (quantity > 0) setQuantity((prevState) => prevState - 1);
+            onAddCart();
           }}
         >
-          <Text style={styles.buttonText}>-</Text>
-        </TouchableHighlight>
-        <Text style={{ paddingTop: 10 }}>{quantity}</Text>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => {
-            setQuantity((prevState) => prevState + 1);
-          }}
-        >
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.button} onPress={() => {}}>
-          <Text style={styles.buttonText}>Buy</Text>
+          <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button} onPress={() => {}}>
           <Text style={styles.buttonText}>Details</Text>

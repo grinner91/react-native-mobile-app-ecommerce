@@ -6,16 +6,21 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 //import Ionicons from "react-native-vector-icons/Ionicons";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { ProductsList } from "./components/ProductsList";
-import { Cart } from "./components/Cart";
 import { AppContext, reducer } from "./services/app.context";
+import { CartStackNav } from "./components/Carts/CartStackNav";
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, {});
+  const [state, dispatch] = useReducer(reducer, {
+    user: null,
+    token: null,
+    cart: [],
+    isloggedin: false,
+  });
   return (
-    <NavigationContainer>
-      <AppContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
             name="products"
@@ -28,7 +33,7 @@ export default function App() {
           />
           <Tab.Screen
             name="cart"
-            component={Cart}
+            component={CartStackNav}
             options={{
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons
@@ -40,7 +45,7 @@ export default function App() {
             }}
           />
         </Tab.Navigator>
-      </AppContext.Provider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </AppContext.Provider>
   );
 }
