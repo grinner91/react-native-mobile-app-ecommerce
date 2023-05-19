@@ -1,0 +1,3 @@
+
+RN strip integration 
+https://www.callstack.com/blog/mobile-payment-in-react-native-with-stripe-and-expo

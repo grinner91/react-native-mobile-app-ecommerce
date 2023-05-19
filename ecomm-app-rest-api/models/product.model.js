@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const productSchema = new Schema({
   _id: { type: String, required: true },
@@ -19,14 +19,37 @@ const productSchema = new Schema({
       },
     ],
   },
-  time: String,
+  time: { type: Date, default: Date.now },
 });
 
 productSchema.index({ title: 1 });
 
-const ProductsModel = model("Products", productSchema);
+const ProductModel = model("Product", productSchema);
 
-export default ProductsModel;
+export default ProductModel;
+
+///////////////////////// for test ///dummy data
+export async function insertProductData() {
+  try {
+    const product = {
+      _id: new mongoose.Types.ObjectId(),
+      name: "iPhone 12",
+      category: "mobile",
+      price: 99.0,
+      pictures: [],
+      review: {
+        score: 3.0, //average of all stars
+        feedbacks: [],
+      },
+      time: new Date(),
+    };
+
+    const newProduct = new ProductModel(product);
+    newProduct.save();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 /*
 Product

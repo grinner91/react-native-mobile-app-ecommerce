@@ -12,12 +12,12 @@ const orderSchema = new Schema({
   ],
   total: Number, // sum of all (product.price * quantity)
   payment: String, //card or cash
-  time: String,
   status: String, //ordered, delivered, or canceled
+  time: { type: Date, default: Date.now },
 });
 
-const OrdersModel = model("Orders", orderSchema);
-export default OrdersModel;
+const OrderModel = model("Order", orderSchema);
+export default OrderModel;
 
 /*
 Order

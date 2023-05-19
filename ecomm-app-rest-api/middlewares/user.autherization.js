@@ -1,10 +1,11 @@
-import { verify, decode } from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
+const { sign, decode, verify } = jsonwebtoken;
 const JWT_SIGN_SECRET = process.env.JWT_SIGN_SECRET;
 
 export default async (req, res, next) => {
   try {
     //for dev skip this verification
-    //next();
+    next();
     //working code: use this middleware in production
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(" ")[1];
