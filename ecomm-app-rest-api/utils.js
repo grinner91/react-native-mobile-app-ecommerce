@@ -10,3 +10,8 @@ export const MONGODB_URI =
   "mongodb+srv://mwagroup4:mwa12345@cluster0.svx6cbk.mongodb.net/mwagroup4?retryWrites=true&w=majority";
 export const JWT_SIGN_SECRET =
   "thisisveryverysecretkey!@#$%^&*neverevercracked!!!";
+
+export const USER_TYPE = {
+  ADMIN: "admin",
+  CUSTOMER: "customer",
+};
