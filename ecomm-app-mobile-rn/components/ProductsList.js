@@ -4,6 +4,7 @@ import { styles } from "../styles/styles";
 import { fetchAllProducts } from "../services/products.http";
 import { FlatList, TextInput } from "react-native-gesture-handler";
 import { Product } from "./Product";
+import Header from "./Header.ios";
 
 export const ProductsList = (props) => {
   const [products, setProducts] = useState([]);
@@ -11,10 +12,10 @@ export const ProductsList = (props) => {
   const [searchKey, setSearchKey] = useState("");
   useEffect(() => {
     fetchAllProducts()
-      .then((data) => {
-        //console.log("ProductsList products: ", data);
-        setProducts(data);
-        setFilteredProducts(data);
+      .then((res) => {
+        //console.log("ProductsList products: ", res.data);
+        setProducts(res.data);
+        setFilteredProducts(res.data);
       })
       .catch((error) => {
         console.log("err: ", error);
@@ -22,6 +23,7 @@ export const ProductsList = (props) => {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <TextInput
         placeholder="search"
         onChangeText={(text) => {

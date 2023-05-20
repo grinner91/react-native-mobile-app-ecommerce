@@ -1,15 +1,17 @@
 import "react-native-gesture-handler";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 //import Ionicons from "react-native-vector-icons/Ionicons";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { ProductsList } from "./components/ProductsList";
-import { AppContext, reducer } from "./services/app.context";
+import { ACTIONS, AppContext, reducer } from "./common/app.context.js";
 import { CartStackNav } from "./components/Carts/CartStackNav";
 import { AdminStackNav } from "./components/admin/AdminStackNav";
 import { Profile } from "./components/users/Profile";
+import { retrieveState, saveState } from "./common/app.localstore";
+import Header from "./components/Header.ios";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -18,8 +20,18 @@ export default function App() {
     user: null,
     token: null,
     cart: [],
-    isloggedin: false,
+    isLoggedin: false,
   });
+
+  useEffect(() => {
+    //saveState({}); //reset data
+    retrieveState().then((data) => {
+      console.log("App Loading data: ", data);
+      if (data.isLoggedin) {
+        dispatch({ type: ACTIONS.SIGN_IN, payload: data });
+      }
+    });
+  }, []);
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <NavigationContainer>

@@ -2,8 +2,8 @@ import { Text, View, Image } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { styles } from "../styles/styles";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { AppContext, ACTIONS } from "../services/app.context";
 import { Quantity } from "./Quantity";
+import { AppContext, ACTIONS } from "../common/app.context.js";
 
 export const Product = ({ product }) => {
   const { state, dispatch } = useContext(AppContext);
