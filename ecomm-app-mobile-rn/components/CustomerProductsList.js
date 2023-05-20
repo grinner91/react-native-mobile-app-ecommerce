@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { styles } from "../styles/styles";
 import { fetchAllProducts } from "../services/products.http";
 import { FlatList, TextInput } from "react-native-gesture-handler";
-import { Product } from "./Product";
+import { CustomerProduct } from "./CustomerProduct.js";
 import Header from "./Header.ios";
 
-export const ProductsList = (props) => {
+export const CustomerProductsList = (props) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchKey, setSearchKey] = useState("");
@@ -41,7 +41,7 @@ export const ProductsList = (props) => {
       />
       <FlatList
         data={filteredProducts}
-        renderItem={({ item }) => <Product product={item} />}
+        renderItem={({ item }) => <CustomerProduct product={item} />}
       ></FlatList>
     </SafeAreaView>
   );

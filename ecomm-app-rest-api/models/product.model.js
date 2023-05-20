@@ -5,11 +5,7 @@ const productSchema = new Schema({
   name: { type: String, required: true }, // text indexing
   category: String,
   price: Number,
-  pictures: [
-    {
-      fileName: String,
-    },
-  ],
+  pictures: [],
   review: {
     score: Number, //average of all stars
     feedbacks: [

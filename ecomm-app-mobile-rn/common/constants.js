@@ -10,3 +10,9 @@ export const STRIPE_PUBLBISHABLE_KEY =
 
 export const SECRET_KEY =
   "sk_test_51N9CAyBPNu2yH6XwMhahMNF6KzFifGsMCd7x43RBmvnJ0gQdw7wPUapxEKB7JXXnsiGnW6V15HhT0E2nwjjQng6R00fXhxopjR";
+
+export const CUSTOMERS_PAGE = {
+  PRODUCTS_LIST: "CustomerProductsList",
+  PRODUCT: "CustomerProduct",
+  PRODUCT_DETAILS: "CustomerProductDetails",
+};

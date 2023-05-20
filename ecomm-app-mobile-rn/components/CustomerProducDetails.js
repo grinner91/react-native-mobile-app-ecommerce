@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { styles } from "../styles/styles";
 import { SafeAreaView } from "react-native";
 
-export const Product = ({ product }) => {
+export const CustomerProductDetails = ({ product }) => {
   useEffect(() => {
     //console.log("product details: ", product);
   }, []);

@@ -28,7 +28,7 @@ export const CartList = (props) => {
 
   const onCheckout = () => {
     console.log("oncheckout");
-    navigation.navigate("CartShippingAddress");
+    navigation.navigate("CartCheckout");
   };
 
   return (

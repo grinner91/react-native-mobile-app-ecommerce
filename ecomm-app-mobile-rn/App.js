@@ -5,7 +5,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 //import Ionicons from "react-native-vector-icons/Ionicons";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
-import { ProductsList } from "./components/ProductsList";
+import {
+  CustomerProductsList,
+  ProductsList,
+} from "./components/CustomerProductsList.js";
 import { ACTIONS, AppContext, reducer } from "./common/app.context.js";
 import { CartStackNav } from "./components/Carts/CartStackNav";
 import { AdminStackNav } from "./components/admin/AdminStackNav";
@@ -49,9 +52,10 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
-            name="ProductsList"
-            component={ProductsList}
+            name="CustomerProductsList"
+            component={CustomerProductsList}
             options={{
+              headerTitle: "Products",
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="home" size={30} color={color} />
               ),

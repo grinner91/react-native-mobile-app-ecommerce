@@ -11,6 +11,7 @@ import {
 import { styles } from "../../styles/styles.js";
 import { ACTIONS, AppContext } from "../../common/app.context.js";
 import { sendLoginRequest } from "../../services/users.http.js";
+import { CUSTOMERS_PAGE } from "../../common/constants.js";
 
 export const Login = () => {
   const navigation = useNavigation();
@@ -34,7 +35,7 @@ export const Login = () => {
           //console.log("Login UI res: ", res);
           dispatch({ type: ACTIONS.SIGN_IN, payload: res.data });
           onLoggedin(); //App reload
-          navigation.navigate("ProductsList");
+          navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
         })
         .catch((err) => {
           console.log("Login UI err: ", err);

@@ -5,7 +5,7 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 import { Quantity } from "./Quantity";
 import { AppContext, ACTIONS } from "../common/app.context.js";
 
-export const Product = ({ product }) => {
+export const CustomerProduct = ({ product }) => {
   const { state, dispatch } = useContext(AppContext);
   const [quantity, setQuantity] = useState(0);
   useEffect(() => {
@@ -34,13 +34,21 @@ export const Product = ({ product }) => {
     setQuantity(value);
   };
 
-  const imageUri =
-    "https://i5.walmartimages.com/asr/52a8a553-1dc9-4263-af1f-c8750bbf7605.b950d0f9a7eb260800e691affbc1e553.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF ";
+  // const imageUri =
+  //   "https://i5.walmartimages.com/asr/52a8a553-1dc9-4263-af1f-c8750bbf7605.b950d0f9a7eb260800e691affbc1e553.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF ";
 
   return (
     <View style={[styles.content]}>
       <View style={{ flexDirection: "row" }}>
-        <Image source={{ uri: imageUri }} style={styles.imagePreview} />
+        {product.pictures && product.pictures.length > 0 ? (
+          <Image
+            source={{ uri: product.pictures[0] }}
+            style={styles.imagePreview}
+          />
+        ) : (
+          ""
+        )}
+
         <View style={{ flexDirection: "column" }}>
           <Text style={styles.title2}> {" " + product.name}</Text>
           <Text> {" price " + product.price}</Text>
