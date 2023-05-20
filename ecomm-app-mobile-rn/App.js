@@ -8,6 +8,8 @@ import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { ProductsList } from "./components/ProductsList";
 import { AppContext, reducer } from "./services/app.context";
 import { CartStackNav } from "./components/Carts/CartStackNav";
+import { AdminStackNav } from "./components/admin/AdminStackNav";
+import { Profile } from "./components/users/Profile";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -38,6 +40,32 @@ export default function App() {
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons
                   name="cart-outline"
+                  size={30}
+                  color={color}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="admin"
+            component={AdminStackNav}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="database-cog-outline"
+                  size={30}
+                  color={color}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={Profile}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="account-details-outline"
                   size={30}
                   color={color}
                 />

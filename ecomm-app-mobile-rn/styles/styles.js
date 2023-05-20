@@ -68,8 +68,8 @@ export const styles = StyleSheet.create({
     width: 350,
   },
   imagePreview: {
-    height: 40,
-    width: 40,
+    height: 100,
+    width: 100,
     borderColor: "#00bfff",
     borderWidth: 2,
     marginBottom: 2,
@@ -92,5 +92,10 @@ export const styles = StyleSheet.create({
     width: 300,
     alignSelf: "stretch",
     textAlign: "center",
+  },
+  adminOptions: {
+    width: 350,
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

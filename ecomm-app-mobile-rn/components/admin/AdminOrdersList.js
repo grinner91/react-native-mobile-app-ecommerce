@@ -1,11 +1,11 @@
 import { Text, SafeAreaView, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { styles } from "../styles/styles";
-import { fetchAllProducts } from "../services/products.http";
 import { FlatList, TextInput } from "react-native-gesture-handler";
-import { Product } from "./Product";
+import { styles } from "../../styles/styles.js";
+import { AdminProduct } from "./AdminProduct.js";
+import { fetchAllProducts } from "../../services/products.http.js";
 
-export const ProductsList = (props) => {
+export const AdminOrdersList = (props) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchKey, setSearchKey] = useState("");
@@ -39,7 +39,7 @@ export const ProductsList = (props) => {
       />
       <FlatList
         data={filteredProducts}
-        renderItem={({ item }) => <Product product={item} />}
+        renderItem={({ item }) => <AdminProduct product={item} />}
       ></FlatList>
     </SafeAreaView>
   );

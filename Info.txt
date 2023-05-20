@@ -10,3 +10,8 @@ https://dashboard.stripe.com/test/apikeys
 
 RN strip integration 
 https://www.callstack.com/blog/mobile-payment-in-react-native-with-stripe-and-expo
+https://blog.logrocket.com/mastering-stripe-paymentsheet-react-native-expo/
+
+
+MaterialCommunityIcons 
+https://pictogrammers.com/library/mdi/

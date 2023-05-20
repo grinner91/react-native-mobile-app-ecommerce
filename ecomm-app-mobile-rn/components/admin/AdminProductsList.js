@@ -1,11 +1,15 @@
 import { Text, SafeAreaView, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { styles } from "../styles/styles";
-import { fetchAllProducts } from "../services/products.http";
-import { FlatList, TextInput } from "react-native-gesture-handler";
-import { Product } from "./Product";
+import {
+  FlatList,
+  TextInput,
+  TouchableHighlight,
+} from "react-native-gesture-handler";
+import { AdminProduct } from "./AdminProduct";
+import { fetchAllProducts } from "../../services/products.http";
+import { styles } from "../../styles/styles";
 
-export const ProductsList = (props) => {
+export const AdminProductsList = (props) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchKey, setSearchKey] = useState("");
@@ -22,6 +26,14 @@ export const ProductsList = (props) => {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableHighlight
+        style={[styles.button]}
+        onPress={() => {
+          navigation.navigate("AddEditProduct", { product: null });
+        }}
+      >
+        <Text style={styles.submitButtonText}>Products</Text>
+      </TouchableHighlight>
       <TextInput
         placeholder="search"
         onChangeText={(text) => {
@@ -39,7 +51,7 @@ export const ProductsList = (props) => {
       />
       <FlatList
         data={filteredProducts}
-        renderItem={({ item }) => <Product product={item} />}
+        renderItem={({ item }) => <AdminProduct product={item} />}
       ></FlatList>
     </SafeAreaView>
   );
