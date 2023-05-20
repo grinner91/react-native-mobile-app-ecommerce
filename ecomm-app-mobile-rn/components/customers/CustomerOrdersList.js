@@ -1,29 +1,48 @@
 import { Text, SafeAreaView, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import { styles } from "../styles/styles";
-import { fetchAllProducts } from "../services/products.http";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList, TextInput } from "react-native-gesture-handler";
-import { CustomerProduct } from "./CustomerProduct.js";
-import Header from "./Header.ios";
+import { CustomerOrder } from "./CustomerOrder";
+import { styles } from "../../styles/styles";
+import Header from "../Header.ios";
+import { fetchAllOrders } from "../../services/orders.http";
+import { AppContext } from "../../common/app.context";
+import { retrieveUser } from "../../common/app.localstore";
 
 export const CustomerOrdersList = (props) => {
+  const { state, reload } = useContext(AppContext);
+  const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   useEffect(() => {
-    fetchAllProducts()
+    fetchOrdersList();
+    // retrieveUser()
+    //   .then((data) => {
+    //     setUser(data);
+    //     console.log("CustomerOrdersList Orders: user ", data);
+    //     fetchOrdersList();
+    //   })
+    //   .catch();
+  }, [reload]);
+
+  const fetchOrdersList = async () => {
+    // if (user && user._id) {
+    fetchAllOrders()
       .then((res) => {
-        console.log("OrdersList Orders: ", res.data);
+        console.log("CustomerOrdersList Orders: ", res.data);
         setOrders(res.data);
         setFilteredOrders(res.data);
       })
       .catch((error) => {
-        console.log("err: ", error);
+        console.log("CustomerOrdersList err: ", error);
       });
-  }, []);
+    // } else {
+    //   console.log("CustomerOrdersList usr: ", state);
+    // }
+  };
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Text style={styles.title2}>My Orders </Text>
       <TextInput
         placeholder="search"
         onChangeText={(text) => {
@@ -43,8 +62,8 @@ export const CustomerOrdersList = (props) => {
         style={styles.searchInput}
       />
       <FlatList
-        data={filteredProducts}
-        renderItem={({ item }) => <CustomerOrder product={item} />}
+        data={filteredOrders}
+        renderItem={({ item }) => <CustomerOrder order={item} />}
       ></FlatList>
     </SafeAreaView>
   );

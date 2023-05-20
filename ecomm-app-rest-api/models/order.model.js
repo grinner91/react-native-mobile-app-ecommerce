@@ -8,6 +8,7 @@ const orderSchema = new Schema({
       name: String,
       price: Number,
       quantity: Number,
+      pictures: [],
     },
   ],
   total: Number, // sum of all (product.price * quantity)

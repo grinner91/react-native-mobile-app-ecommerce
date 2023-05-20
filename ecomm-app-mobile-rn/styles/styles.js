@@ -55,6 +55,10 @@ export const styles = StyleSheet.create({
     alignSelf: "stretch",
     marginBottom: 5,
   },
+  title3: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
   content: {
     fontSize: 16,
     padding: 5,
@@ -66,6 +70,18 @@ export const styles = StyleSheet.create({
     alignSelf: "stretch",
     flex: 1,
     width: 350,
+  },
+  content2: {
+    fontSize: 16,
+    padding: 5,
+    fontWeight: "bold",
+    backgroundColor: "#f0ffff",
+    borderColor: "#00bfff",
+    borderWidth: 1,
+    margin: 2,
+    alignSelf: "stretch",
+    flex: 1,
+    width: 300,
   },
   imagePreview: {
     height: 100,

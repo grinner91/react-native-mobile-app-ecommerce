@@ -21,7 +21,7 @@ export async function addOrder(req, res, next) {
     const { user_id } = req.params;
     const orderBody = { ...req.body };
     orderBody._id = new mongoose.Types.ObjectId();
-    orderBody.userId = new mongoose.Types.ObjectId(user_id);
+    if (user_id) orderBody.userId = new mongoose.Types.ObjectId(user_id);
 
     console.log("controller addOrder: ", orderBody);
 

@@ -12,12 +12,12 @@ export const CartCheckout = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    console.log("cart items: ", state.cart);
     setCartItems(state.cart);
   });
 
   const onPayPress = () => {
     console.log("onPay");
-    
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -32,7 +32,9 @@ export const CartCheckout = () => {
         </StripeProvider>
         <TouchableHighlight
           style={[styles.button, { alignSelf: "stretch" }]}
-          onPress={() => {}}
+          onPress={() => {
+            onPayPress();
+          }}
         >
           <Text style={styles.buttonText}>Pay by Card</Text>
         </TouchableHighlight>

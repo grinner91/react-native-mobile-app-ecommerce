@@ -34,9 +34,6 @@ export const CustomerProduct = ({ product }) => {
     setQuantity(value);
   };
 
-  // const imageUri =
-  //   "https://i5.walmartimages.com/asr/52a8a553-1dc9-4263-af1f-c8750bbf7605.b950d0f9a7eb260800e691affbc1e553.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF ";
-
   return (
     <View style={[styles.content]}>
       <View style={{ flexDirection: "row" }}>

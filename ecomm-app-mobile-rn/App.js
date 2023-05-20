@@ -15,6 +15,7 @@ import { AdminStackNav } from "./components/admin/AdminStackNav";
 import { Profile } from "./components/users/Profile";
 import { retrieveState, saveState } from "./common/app.localstore";
 import Header from "./components/Header.ios";
+import { CustomerOrdersList } from "./components/customers/CustomerOrdersList.js";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -31,8 +32,10 @@ export default function App() {
     //saveState({}); //reset data
     retrieveState().then((data) => {
       console.log("App Loading data: ", data);
-      if (data.isLoggedin) {
+      if (data.isLoggedin && data.user && data.user._id) {
         dispatch({ type: ACTIONS.SIGN_IN, payload: data });
+      } else {
+        dispatch({ type: ACTIONS.SIGN_OUT, payload: {} });
       }
     });
   }, [reload]);
@@ -71,6 +74,15 @@ export default function App() {
                   size={30}
                   color={color}
                 />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="orders"
+            component={CustomerOrdersList}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="cart" size={30} color={color} />
               ),
             }}
           />
