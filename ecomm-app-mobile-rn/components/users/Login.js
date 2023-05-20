@@ -14,7 +14,7 @@ import { sendLoginRequest } from "../../services/users.http.js";
 
 export const Login = () => {
   const navigation = useNavigation();
-  const { state, dispatch } = useContext(AppContext);
+  const { state, dispatch, onLoggedin } = useContext(AppContext);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -26,13 +26,15 @@ export const Login = () => {
     setUser({ email: "admin@miu.edu", password: "123" });
   }, []);
 
-  const onLogin = () => {
+  const onLoginPress = () => {
     //setUser((prevState) => ({ ...prevState, isSubmitting: true }));
     if (user.email && user.password) {
       sendLoginRequest(user.email, user.password)
         .then((res) => {
-          console.log("Login UI res: ", res);
+          //console.log("Login UI res: ", res);
           dispatch({ type: ACTIONS.SIGN_IN, payload: res.data });
+          onLoggedin(); //App reload
+          navigation.navigate("ProductsList");
         })
         .catch((err) => {
           console.log("Login UI err: ", err);
@@ -44,7 +46,7 @@ export const Login = () => {
     //  }, 1000);
   };
 
-  const onSignup = () => {};
+  const onSignupPress = () => {};
 
   return (
     <KeyboardAwareScrollView style={styles.root}>
@@ -66,10 +68,16 @@ export const Login = () => {
         }
       />
 
-      <TouchableHighlight style={[styles.button]} onPress={() => onLogin()}>
+      <TouchableHighlight
+        style={[styles.button]}
+        onPress={() => onLoginPress()}
+      >
         <Text style={styles.submitButtonText}>Login</Text>
       </TouchableHighlight>
-      <TouchableHighlight style={[styles.button]} onPress={() => onSignup()}>
+      <TouchableHighlight
+        style={[styles.button]}
+        onPress={() => onSignupPress()}
+      >
         <Text style={styles.submitButtonText}>Signup</Text>
       </TouchableHighlight>
       {user.isSubmitting ? (

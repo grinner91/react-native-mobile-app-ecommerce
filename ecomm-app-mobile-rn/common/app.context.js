@@ -15,6 +15,7 @@ export function reducer(state, action) {
       const updatedState = {
         ...state,
         user: {
+          _id: action.payload._id,
           email: action.payload.email,
           fullname: action.payload.fullname,
         },

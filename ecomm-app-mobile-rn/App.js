@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -22,6 +22,7 @@ export default function App() {
     cart: [],
     isLoggedin: false,
   });
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     //saveState({}); //reset data
@@ -31,13 +32,24 @@ export default function App() {
         dispatch({ type: ACTIONS.SIGN_IN, payload: data });
       }
     });
-  }, []);
+  }, [reload]);
+
+  const onLoggedin = () => {
+    console.log("App.js onLoggedin ");
+    setReload(!reload);
+  };
+
+  const onLogout = () => {
+    setReload(!reload);
+  };
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider
+      value={{ state, dispatch, onLoggedin, onLogout, reload }}
+    >
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
-            name="products"
+            name="ProductsList"
             component={ProductsList}
             options={{
               tabBarIcon: ({ color }) => (
