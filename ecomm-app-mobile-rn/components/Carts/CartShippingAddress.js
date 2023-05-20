@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import {
   ActivityIndicator,
   Text,
@@ -11,7 +12,7 @@ import { styles } from "../../styles/styles.js";
 
 export const CartShippingAddress = ({ route }) => {
   const navigation = useNavigation();
-  const { address } = route.params;
+  //const { address } = route.params;
   const [state, setState] = useState({
     address: "",
     city: "",
@@ -21,9 +22,9 @@ export const CartShippingAddress = ({ route }) => {
   });
 
   useEffect(() => {
-    if (address) {
-      setState((prevState) => ({ ...prevState, ...address }));
-    }
+    // if (address) {
+    //   setState((prevState) => ({ ...prevState, ...address }));
+    // }
   }, []);
 
   const submitAddress = () => {
@@ -78,10 +79,10 @@ export const CartShippingAddress = ({ route }) => {
         }
       />
       <TouchableHighlight
-        style={[styles.submitButton, styles.input]}
+        style={[styles.button]}
         onPress={() => submitAddress()}
       >
-        <Text style={styles.submitButtonText}>Add</Text>
+        <Text style={styles.submitButtonText}>Next</Text>
       </TouchableHighlight>
       {state.submitting ? (
         <ActivityIndicator size="large" color="#0000ff" />

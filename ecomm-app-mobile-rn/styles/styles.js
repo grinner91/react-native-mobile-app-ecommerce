@@ -79,4 +79,18 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f0ffff",
     borderWidth: 1,
   },
+  cardField: {
+    fontSize: 16,
+    padding: 5,
+    fontWeight: "bold",
+    backgroundColor: "#f0ffff",
+    borderColor: "#00bfff",
+    borderWidth: 1,
+    margin: 2,
+    height: 100,
+    marginVertical: 30,
+    width: 300,
+    alignSelf: "stretch",
+    textAlign: "center",
+  },
 });
