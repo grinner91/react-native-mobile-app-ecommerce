@@ -16,6 +16,8 @@ import { Profile } from "./components/users/Profile";
 import { retrieveState, saveState } from "./common/app.localstore";
 import Header from "./components/Header.ios";
 import { CustomerOrdersList } from "./components/customers/CustomerOrdersList.js";
+import { AuthStackNav } from "./components/users/AuthStackNav.js";
+import { Logout } from "./components/users/Logout.js";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -56,13 +58,14 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
-            name="CustomerProductsList"
+            name="products"
             component={CustomerProductsList}
             options={{
-              headerTitle: "Products",
+              headerTitle: (props) => "Products",
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="home" size={30} color={color} />
               ),
+              headerRight: () => <Logout />,
             }}
           />
           <Tab.Screen
@@ -102,7 +105,7 @@ export default function App() {
           />
           <Tab.Screen
             name="Profile"
-            component={Profile}
+            component={AuthStackNav}
             options={{
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons

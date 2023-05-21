@@ -51,7 +51,7 @@ export const Login = () => {
     //  }, 1000);
   };
 
-  const onSignupPress = () => {};
+ 
 
   return (
     <KeyboardAwareScrollView style={styles.root}>
@@ -79,12 +79,7 @@ export const Login = () => {
       >
         <Text style={styles.submitButtonText}>Login</Text>
       </TouchableHighlight>
-      <TouchableHighlight
-        style={[styles.button]}
-        onPress={() => onSignupPress()}
-      >
-        <Text style={styles.submitButtonText}>Signup</Text>
-      </TouchableHighlight>
+     
       {user.isSubmitting ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : null}
