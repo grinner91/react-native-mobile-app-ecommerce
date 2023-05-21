@@ -7,7 +7,7 @@ export const sendLoginRequest = async (email, password) => {
       password,
     });
     const json = response;
-    console.log("sendLoginRequest json: ", json);
+    console.log("sendLoginRequest json: ", json.data);
     return json.data;
   } catch (error) {
     console.error(error);

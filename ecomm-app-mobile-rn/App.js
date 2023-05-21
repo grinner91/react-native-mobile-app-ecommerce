@@ -34,8 +34,8 @@ export default function App() {
     //saveState({}); //reset data
     retrieveState().then((data) => {
       console.log("App Loading data: ", data);
-      if (data && data.isLoggedin && data.user) {
-        console.log("App set state: : ", data.user);
+      if (data && data.isLoggedin && data.user._id) {
+        console.log("App SET_STATE: : ", data);
         dispatch({ type: ACTIONS.SET_STATE, payload: data });
       } else {
         dispatch({ type: ACTIONS.SIGN_OUT, payload: {} });

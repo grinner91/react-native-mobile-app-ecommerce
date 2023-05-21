@@ -20,7 +20,9 @@ export async function login(req, res, next) {
     }
 
     //if user exisits then compare hash and send resonse
-    if (user && isMatchedPasswordHash(password, user)) {
+    const isHashMatched = await compare(password, user.password);
+
+    if (user && isHashMatched) {
       console.log("User's password hash is matched.");
       res.json(createJWTokenAndResponseData(user));
     } else {
@@ -120,13 +122,21 @@ function createInvalidUserResponseData() {
   return { success: false, data: { msg: "Invalid email or password." } };
 }
 
-async function isMatchedPasswordHash(password, user) {
-  try {
-    return await compare(password, user.password);
-  } catch (err) {
-    next(err);
-  }
-}
+// async function isMatchedPasswordHash(password, user) {
+//   try {
+//     console.log(
+//       "controller login given passw: ",
+//       password,
+//       ", hash pass:",
+//       user.password
+//     );
+//     const result = await compare(password, user.password);
+//     console.log("hash match: ", result);
+//     return result;
+//   } catch (err) {
+//     next(err);
+//   }
+// }
 
 async function isUserEmailExistInDb(newUser) {
   try {

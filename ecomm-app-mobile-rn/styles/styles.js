@@ -68,7 +68,6 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 2,
     alignSelf: "stretch",
-    flex: 1,
     width: 350,
   },
   content2: {
@@ -80,7 +79,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 2,
     alignSelf: "stretch",
-    flex: 1,
+
     width: 300,
   },
   imagePreview: {

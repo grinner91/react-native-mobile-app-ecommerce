@@ -4,9 +4,11 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import {
   ActivityIndicator,
+  Alert,
   Text,
   TextInput,
   TouchableHighlight,
+  View,
 } from "react-native";
 import { styles } from "../../styles/styles.js";
 import { ACTIONS, AppContext } from "../../common/app.context.js";
@@ -14,6 +16,7 @@ import { sendLoginRequest } from "../../services/users.http.js";
 import { CUSTOMERS_PAGE } from "../../common/constants.js";
 import { createUpdatedStateObj } from "../../common/utils.js";
 import { saveState } from "../../common/app.localstore.js";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Login = () => {
   const navigation = useNavigation();
@@ -31,15 +34,20 @@ export const Login = () => {
 
   const onLoginPress = () => {
     //setUser((prevState) => ({ ...prevState, isSubmitting: true }));
+    console.log("user login: ", user.email, ", ", user.password);
     if (user.email && user.password) {
       sendLoginRequest(user.email, user.password)
         .then((res) => {
           console.log("Login UI res: ", res.data);
-          const updatedState = createUpdatedStateObj(state, res.data);
-          dispatch({ type: ACTIONS.SIGN_IN, payload: updatedState });
-          //saveState(updatedState);
-          onLoggedin(); //App reload
-          navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
+          if (res.success) {
+            const updatedState = createUpdatedStateObj(state, res.data);
+            dispatch({ type: ACTIONS.SIGN_IN, payload: updatedState });
+            //saveState(updatedState);
+            onLoggedin(); //App reload
+            navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
+          } else {
+            Alert.alert("" + res.data.msg);
+          }
         })
         .catch((err) => {
           console.log("Login UI err: ", err);
@@ -51,39 +59,41 @@ export const Login = () => {
     //  }, 1000);
   };
 
- 
-
   return (
-    <KeyboardAwareScrollView style={styles.root}>
-      <TextInput
-        style={styles.input}
-        placeholder="email"
-        value={user.email}
-        onChangeText={(text) =>
-          setUser((prevState) => ({ ...prevState, email: text }))
-        }
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="password"
-        value={user.password}
-        textContentType="password"
-        onChangeText={(text) =>
-          setUser((prevState) => ({ ...prevState, password: text }))
-        }
-      />
+    <SafeAreaView>
+      <KeyboardAwareScrollView>
+        <View style={styles.content}>
+          <TextInput
+            style={styles.input}
+            placeholder="email"
+            value={user.email}
+            onChangeText={(text) =>
+              setUser((prevState) => ({ ...prevState, email: text }))
+            }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="password"
+            value={user.password}
+            textContentType="password"
+            onChangeText={(text) =>
+              setUser((prevState) => ({ ...prevState, password: text }))
+            }
+          />
 
-      <TouchableHighlight
-        style={[styles.button]}
-        onPress={() => onLoginPress()}
-      >
-        <Text style={styles.submitButtonText}>Login</Text>
-      </TouchableHighlight>
-     
-      {user.isSubmitting ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : null}
-    </KeyboardAwareScrollView>
+          <TouchableHighlight
+            style={[styles.button]}
+            onPress={() => onLoginPress()}
+          >
+            <Text style={styles.submitButtonText}>Login</Text>
+          </TouchableHighlight>
+
+          {user.isSubmitting ? (
+            <ActivityIndicator size="large" color="#0000ff" />
+          ) : null}
+        </View>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 };
 /*

@@ -11,30 +11,34 @@ import Header from "../Header.ios";
 export const Profile = () => {
   const { state, reload } = useContext(AppContext);
   const navigation = useNavigation();
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  const [user, setUser] = useState({});
   //
   useEffect(() => {
-    //if (state.isLoggedin && state.user) {
-    setIsLoggedin(state.isLoggedin);
-    setUser(state.user);
-    //}
-  }, [reload]);
-  //
+    console.log(
+      "Profile mounting: user ",
+      state.user,
+      ", isLoggedin: ",
+      state.isLoggedin
+    );
+  });
+
   const onSignupPress = () => {
     navigation.navigate(AUTH_PAGE.SIGNUP);
   };
 
   const profileInfoUI = () => {
-    return (
-      <View>
+    console.log("profileInfoUI: ", state.user);
+    if (state.user && state.user.fullname) {
+      return (
         <View style={[styles.content2]}>
-          <Text style={styles.title3}>Wellcome {user.fullname}</Text>
-          <Text> emai: {user.email}</Text>
-          <Text> role: {user.role}</Text>
+          <Text>Welcome</Text>
+          <Text style={styles.title3}>Wellcome {state.user.fullname}</Text>
+          <Text> emai: {state.user.email}</Text>
+          <Text> role: {state.user.role}</Text>
         </View>
-      </View>
-    );
+      );
+    } else {
+      return <Text> No User</Text>;
+    }
   };
 
   const singupActionUI = () => {
@@ -50,11 +54,14 @@ export const Profile = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <Header />
       <View style={styles.content}>
-        {isLoggedin ? profileInfoUI() : <Login />}
-        {isLoggedin ? "" : singupActionUI()}
+        {profileInfoUI()}
+        <Login />
+        {singupActionUI()}
+        {/* {state.isLoggedin ? profileInfoUI() : <Login />}
+        {state.isLoggedin ? "" : singupActionUI()} */}
       </View>
     </SafeAreaView>
   );

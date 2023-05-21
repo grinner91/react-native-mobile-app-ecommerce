@@ -62,9 +62,7 @@ export const Signup = () => {
             const updatedState = createUpdatedStateObj(state, res.data);
             dispatch({ type: ACTIONS.SIGN_IN, payload: updatedState });
             onLoggedin(); //App reload
-            
             navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
-
           }
         })
         .catch((err) => {

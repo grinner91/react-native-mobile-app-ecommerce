@@ -5,6 +5,7 @@ import { connectProductsDb } from "./mongodb.connection.js";
 import productsRouter from "./routers/products.router.js";
 import usersRouter from "./routers/users.router.js";
 import ordersRouter from "./routers/orders.router.js";
+import { authUser } from "./middlewares/user.autherization.js";
 
 const app = express();
 app.use(cors());
@@ -19,9 +20,9 @@ connectProductsDb()
     console.log("db connection err: ", err);
   });
 
-app.use("/api/v1/users", usersRouter);
-app.use("/api/v1/products", productsRouter);
-app.use("/api/v1/orders", ordersRouter);
+app.use("/api/v1/users", authUser, usersRouter);
+app.use("/api/v1/products", authUser, productsRouter);
+app.use("/api/v1/orders", authUser, ordersRouter);
 
 app.use("*", async (req, res, next) => {
   res.status(404);

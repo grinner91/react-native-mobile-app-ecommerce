@@ -3,10 +3,10 @@ import { getSecureHttp } from "./base.http.js";
 export const fetchAllOrders = async (userId) => {
   try {
     let url = "";
-    if (userId) url = "/api/v1/orders/" + userId;
-    else url = "/api/v1/orders/6466efdc68335b913881b19f"; //TODO for test remove
+    if (userId) url = `/api/v1/orders/${userId}`;
+    //else url = "/api/v1/orders/"; //TODO for test remove
     //
-    //console.log(" fetchAllOrders url: ", url);
+    console.log(" fetchAllOrders url: ", url);
     const response = await getSecureHttp().get(url);
     const json = response;
     //console.log(" fetchAllOrders json: ", json);

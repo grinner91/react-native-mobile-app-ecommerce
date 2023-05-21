@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, View, KeyboardAvoidingView } from "react-native";
+import { Text, SafeAreaView, Alert } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, TextInput } from "react-native-gesture-handler";
 import { CustomerOrder } from "./CustomerOrder";
@@ -10,30 +10,37 @@ import { retrieveUser } from "../../common/app.localstore";
 
 export const CustomerOrdersList = (props) => {
   const { state, reload } = useContext(AppContext);
-  const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [refreshOrders, setRefreshOrders] = useState(false);
+  // useEffect(() => {
+  //   if (state.user) {
+  //     fetchOrdersList();
+  //   }
+  // }, []);
   useEffect(() => {
     console.log("CustomerOrdersList state: ", state);
     fetchOrdersList();
   }, [reload, refreshOrders]);
 
   const fetchOrdersList = async () => {
-    // if (user && user._id) {
-    fetchAllOrders()
-      .then((res) => {
-        console.log("CustomerOrdersList Orders: ", res.data);
-        setOrders(res.data);
-        setFilteredOrders(res.data);
-      })
-      .catch((error) => {
-        console.log("CustomerOrdersList err: ", error);
-      });
-    // } else {
-    //   console.log("CustomerOrdersList usr: ", state);
-    // }
+    if (state.user && state.user._id) {
+      fetchAllOrders(state.user._id)
+        .then((res) => {
+          //console.log("CustomerOrdersList Orders: ", res.data);
+          setOrders(res.data);
+          setFilteredOrders(res.data);
+        })
+        .catch((error) => {
+          console.log("CustomerOrdersList err: ", error);
+        });
+    } else {
+      Alert.alert("Please, login to see orders list.");
+      console.log("CustomerOrdersList usr: ", state);
+      setFilteredOrders([]);
+      setOrders([]);
+    }
   };
   const onOrderUpdated = () => {
     setRefreshOrders(!refreshOrders);
