@@ -5,6 +5,17 @@ import OrderModel from "../models/order.model.js";
 
 export async function getAllOrders(req, res, next) {
   try {
+    // const { user_id } = req.params;
+    console.log("controller getAllOrders");
+    const result = await OrderModel.find({});
+    res.send(prepareSuccessResponse(result));
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getAllOrdersByUserId(req, res, next) {
+  try {
     const { user_id } = req.params;
     console.log("controller getAllOrders");
     const result = await OrderModel.find({

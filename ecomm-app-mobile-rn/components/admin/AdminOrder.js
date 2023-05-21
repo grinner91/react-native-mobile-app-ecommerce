@@ -1,12 +1,14 @@
 import { Text, View, Image } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
-import { styles } from "../../styles/styles";
-import { CustomerOrderProductItem } from "./CustomerOrderProductItem";
-import { updateOrderRequest } from "../../services/orders.http";
-import { ORDER_STATUS } from "../../common/constants";
 
-export const CustomerOrder = ({ order, onOrderUpdated }) => {
+import { ORDER_STATUS } from "../../common/constants";
+import { AdminOrderProductItem } from "./AdminOrderProductItem";
+import { styles } from "../../styles/styles";
+import { updateOrderRequest } from "../../services/orders.http";
+
+export const AdminOrder = ({ order, onOrderUpdated }) => {
+  console.log("AdminOrder order: ", order);
   useEffect(() => {
     //
   }, []);
@@ -21,30 +23,42 @@ export const CustomerOrder = ({ order, onOrderUpdated }) => {
   };
 
   const orderStatusActionsUI = () => {
-    if (order.status == ORDER_STATUS.CANCELED) {
+    if (order.status == ORDER_STATUS.ORDERED) {
       return (
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => {
-            updateOrderStatusPress(ORDER_STATUS.ORDERED);
-          }}
-        >
-          <Text style={styles.buttonText}>Order again</Text>
-        </TouchableHighlight>
+        <>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              updateOrderStatusPress(ORDER_STATUS.CANCELED);
+            }}
+          >
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              updateOrderStatusPress(ORDER_STATUS.DELIVERED);
+            }}
+          >
+            <Text style={styles.buttonText}>Delivered</Text>
+          </TouchableHighlight>
+        </>
       );
-    } else if (order.status == ORDER_STATUS.ORDERED) {
+    } else if (order.status === ORDER_STATUS.DELIVERED) {
       return (
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => {
-            updateOrderStatusPress(ORDER_STATUS.CANCELED);
-          }}
-        >
-          <Text style={styles.buttonText}>Cancel</Text>
-        </TouchableHighlight>
+        <>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              updateOrderStatusPress(ORDER_STATUS.ORDERED);
+            }}
+          >
+            <Text style={styles.buttonText}>Not Delivered</Text>
+          </TouchableHighlight>
+        </>
       );
     } else {
-      return <Text>{order.status}</Text>;
+      return "";
     }
   };
 
@@ -68,9 +82,7 @@ export const CustomerOrder = ({ order, onOrderUpdated }) => {
         {order && order.products ? (
           <FlatList
             data={order.products}
-            renderItem={({ item }) => (
-              <CustomerOrderProductItem product={item} />
-            )}
+            renderItem={({ item }) => <AdminOrderProductItem product={item} />}
             keyExtractor={(item) => item._id}
           />
         ) : (

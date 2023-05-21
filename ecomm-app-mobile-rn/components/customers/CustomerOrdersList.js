@@ -4,9 +4,8 @@ import { FlatList, TextInput } from "react-native-gesture-handler";
 import { CustomerOrder } from "./CustomerOrder";
 import { styles } from "../../styles/styles";
 import Header from "../Header.ios";
-import { fetchAllOrders } from "../../services/orders.http";
+import { fetchAllOrdersByUser } from "../../services/orders.http";
 import { AppContext } from "../../common/app.context";
-import { retrieveUser } from "../../common/app.localstore";
 
 export const CustomerOrdersList = (props) => {
   const { state, reload } = useContext(AppContext);
@@ -14,11 +13,7 @@ export const CustomerOrdersList = (props) => {
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [refreshOrders, setRefreshOrders] = useState(false);
-  // useEffect(() => {
-  //   if (state.user) {
-  //     fetchOrdersList();
-  //   }
-  // }, []);
+
   useEffect(() => {
     console.log("CustomerOrdersList state: ", state);
     fetchOrdersList();
@@ -26,7 +21,7 @@ export const CustomerOrdersList = (props) => {
 
   const fetchOrdersList = async () => {
     if (state.user && state.user._id) {
-      fetchAllOrders(state.user._id)
+      fetchAllOrdersByUser(state.user._id)
         .then((res) => {
           //console.log("CustomerOrdersList Orders: ", res.data);
           setOrders(res.data);
