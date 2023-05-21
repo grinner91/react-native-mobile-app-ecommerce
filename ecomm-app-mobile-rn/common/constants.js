@@ -16,3 +16,9 @@ export const CUSTOMERS_PAGE = {
   PRODUCT: "CustomerProduct",
   PRODUCT_DETAILS: "CustomerProductDetails",
 };
+
+export const ORDER_STATUS = {
+  CANCELED: "canceled",
+  ORDERED: "ordered",
+  DELIVERED: "delivered",
+};

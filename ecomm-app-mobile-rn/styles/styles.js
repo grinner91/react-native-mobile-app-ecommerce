@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#00bfff",
     borderColor: "#00bfff",
-    borderRadius: 0,
+    borderRadius: 5,
     padding: 5,
     height: 30,
     margin: 5,
@@ -113,5 +113,12 @@ export const styles = StyleSheet.create({
     width: 350,
     fontSize: 20,
     fontWeight: "bold",
+  },
+  reviewButton: {
+    marginLeft: 10,
+    backgroundColor: "#00bfee",
+    borderColor: "#00bfff",
+    borderWidth: 1,
+    textDecorationLine: "underline",
   },
 });

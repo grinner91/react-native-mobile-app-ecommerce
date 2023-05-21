@@ -2,33 +2,49 @@ import { Text, View, Image } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
 import { styles } from "../../styles/styles";
+import { CustomerOrderProductItem } from "./CustomerOrderProductItem";
+import { updateOrderRequest } from "../../services/orders.http";
+import { ORDER_STATUS } from "../../common/constants";
 
 export const CustomerOrder = ({ order }) => {
   useEffect(() => {
     //
   }, []);
 
-  const onCancelPress = () => {};
+  const updateOrderStatusPress = (orderStatus) => {
+    updateOrderRequest(order._id, orderStatus)
+      .then((res) => {
+        console.log("updateOrderStatusPress res: ", res);
+      })
+      .catch((err) => console.log("updateOrderStatusPress err: ", err));
+  };
 
-  const ProductItem = ({ product }) => {
-    //console.log("product item: ", product);
-    return (
-      <View style={[{ flexDirection: "column" }]}>
-        {product.pictures && product.pictures.length > 0 ? (
-          <Image
-            source={{ uri: product.pictures[0] }}
-            style={styles.imagePreview}
-          />
-        ) : (
-          ""
-        )}
-        <View style={[{ flexDirection: "row" }]}>
-          <Text style={styles.title3}>{product.name}</Text>
-          <Text>{"   $" + product.price}</Text>
-          <Text>{"   units: " + product.quantity}</Text>
-        </View>
-      </View>
-    );
+  const orderStatusUI = () => {
+    if (order.status == ORDER_STATUS.CANCELED) {
+      return (
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            updateOrderStatusPress(ORDER_STATUS.ORDERED);
+          }}
+        >
+          <Text style={styles.buttonText}>Order again</Text>
+        </TouchableHighlight>
+      );
+    } else if (order.status == ORDER_STATUS.ORDERED) {
+      return (
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            updateOrderStatusPress(ORDER_STATUS.CANCELED);
+          }}
+        >
+          <Text style={styles.buttonText}>Cancel</Text>
+        </TouchableHighlight>
+      );
+    } else {
+      return order.status;
+    }
   };
 
   return (
@@ -41,6 +57,7 @@ export const CustomerOrder = ({ order }) => {
         <Text> {" Total $" + order.total}</Text>
         <Text> {" status: " + order.status}</Text>
       </View>
+
       <View
         style={[
           styles.content2,
@@ -50,23 +67,16 @@ export const CustomerOrder = ({ order }) => {
         {order && order.products ? (
           <FlatList
             data={order.products}
-            renderItem={({ item }) => <ProductItem product={item} />}
+            renderItem={({ item }) => (
+              <CustomerOrderProductItem product={item} />
+            )}
             keyExtractor={(item) => item._id}
           />
         ) : (
           ""
         )}
       </View>
-      <TouchableHighlight
-        style={styles.button}
-        onPress={() => {
-          onCancelPress();
-        }}
-      >
-        <Text style={styles.buttonText}>Cancel</Text>
-      </TouchableHighlight>
+      {orderStatusUI()}
     </View>
   );
 };
-
-//order.products.map((prod) => <Text key={prod._id}>{prod.name}</Text>);
