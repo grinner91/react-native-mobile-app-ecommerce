@@ -12,6 +12,8 @@ import { styles } from "../../styles/styles.js";
 import { ACTIONS, AppContext } from "../../common/app.context.js";
 import { sendLoginRequest } from "../../services/users.http.js";
 import { CUSTOMERS_PAGE } from "../../common/constants.js";
+import { createUpdatedStateObj } from "../../common/utils.js";
+import { saveState } from "../../common/app.localstore.js";
 
 export const Login = () => {
   const navigation = useNavigation();
@@ -32,8 +34,10 @@ export const Login = () => {
     if (user.email && user.password) {
       sendLoginRequest(user.email, user.password)
         .then((res) => {
-          //console.log("Login UI res: ", res);
-          dispatch({ type: ACTIONS.SIGN_IN, payload: res.data });
+          console.log("Login UI res: ", res.data);
+          const updatedState = createUpdatedStateObj(state, res.data);
+          dispatch({ type: ACTIONS.SIGN_IN, payload: updatedState });
+          //saveState(updatedState);
           onLoggedin(); //App reload
           navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
         })

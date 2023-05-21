@@ -15,6 +15,7 @@ export const CUSTOMERS_PAGE = {
   PRODUCTS_LIST: "CustomerProductsList",
   PRODUCT: "CustomerProduct",
   PRODUCT_DETAILS: "CustomerProductDetails",
+  ORDER_LIST: "orders",
 };
 
 export const ORDER_STATUS = {

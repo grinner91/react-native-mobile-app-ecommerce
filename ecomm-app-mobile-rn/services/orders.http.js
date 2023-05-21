@@ -34,12 +34,13 @@ export const updateOrderRequest = async (orderId, orderStatus) => {
   }
 };
 
-export const checkoutOrder = async (data) => {
+export const checkoutOrderRequest = async (data) => {
   try {
-    console.log("checkoutOrder data: ", { ...data });
-    const response = await getSecureHttp().post("/api/v1/orders", { ...data });
+    //console.log("checkoutOrderRequest data: ", { ...data });
+    const url = `/api/v1/orders/${data.userId}`;
+    const response = await getSecureHttp().post(url, { ...data });
     const json = response;
-    console.log(" checkoutOrder json: ", json.data);
+    //console.log(" checkoutOrderRequest json: ", json.data);
     return json.data;
   } catch (error) {
     console.error(error);

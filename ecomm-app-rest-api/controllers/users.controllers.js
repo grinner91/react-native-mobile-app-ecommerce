@@ -105,6 +105,7 @@ function createJWTokenAndResponseData(user) {
     _id: user._id,
     email: user.email,
     fullname: user.fullname,
+    role: user.role,
   };
 
   userTokenInfo.jwt = sign({ ...userTokenInfo }, JWT_SIGN_SECRET);

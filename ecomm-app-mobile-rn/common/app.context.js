@@ -7,28 +7,25 @@ export const ACTIONS = {
   SIGN_IN: "SIGN_IN",
   SIGN_OUT: "SIGN_OUT",
   ADD_TO_CART: "ADD_TO_CART",
+  RESET_CART: "RESET_CART",
+  SET_STATE: "SET_STATE",
 };
 
 export function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.SIGN_IN:
-      const updatedState = {
-        ...state,
-        user: {
-          _id: action.payload._id,
-          email: action.payload.email,
-          fullname: action.payload.fullname,
-        },
-        token: action.payload.jwt,
-        isLoggedin: true,
-      };
-      saveState(updatedState);
-
-      return updatedState;
+      saveState(action.payload);
+      return { ...state, ...action.payload };
     //
     case ACTIONS.SIGN_OUT:
-      saveState({ ...state, user: null, token: null, isLoggedin: false });
-      return { ...state, user: null, token: null, isLoggedin: false };
+      saveState({
+        ...state,
+        user: null,
+        token: null,
+        isLoggedin: false,
+        cart: [],
+      });
+      return { ...state, user: null, token: null, isLoggedin: false, cart: [] };
     //
     case ACTIONS.ADD_TO_CART:
       const filteredCart = state.cart.filter(
@@ -36,6 +33,10 @@ export function reducer(state, action) {
       );
       return { ...state, cart: [...filteredCart, action.payload] };
     //
+    case ACTIONS.RESET_CART:
+      return { ...state, cart: [] };
+    case ACTIONS.SET_STATE:
+      return { ...state, ...action.payload };
     default:
       return state;
   }

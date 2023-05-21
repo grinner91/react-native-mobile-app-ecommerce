@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, View } from "react-native";
+import { Text, SafeAreaView, View, KeyboardAvoidingView } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, TextInput } from "react-native-gesture-handler";
 import { CustomerOrder } from "./CustomerOrder";
@@ -16,6 +16,7 @@ export const CustomerOrdersList = (props) => {
   const [searchKey, setSearchKey] = useState("");
   const [refreshOrders, setRefreshOrders] = useState(false);
   useEffect(() => {
+    console.log("CustomerOrdersList state: ", state);
     fetchOrdersList();
   }, [reload, refreshOrders]);
 

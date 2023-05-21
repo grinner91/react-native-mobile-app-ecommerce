@@ -5,6 +5,7 @@ import { Text, TouchableHighlight, View } from "react-native";
 import { styles } from "../../styles/styles.js";
 import { ACTIONS, AppContext } from "../../common/app.context.js";
 import { retrieveUser } from "../../common/app.localstore.js";
+import { CUSTOMERS_PAGE } from "../../common/constants.js";
 
 export const Logout = () => {
   const navigation = useNavigation();
@@ -22,7 +23,7 @@ export const Logout = () => {
   const onLogoutPress = () => {
     dispatch({ type: ACTIONS.SIGN_OUT, payload: "" });
     onLogout();
-    navigation.navigate("ProductsList");
+    navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
   };
 
   const userInfoUI = () => {
