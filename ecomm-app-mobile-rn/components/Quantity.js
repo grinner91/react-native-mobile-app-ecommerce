@@ -7,6 +7,7 @@ import { styles } from "../styles/styles";
 export const Quantity = ({ onQuantityChange }) => {
   //console.log("Quantity props: ", onQuantityChange);
   const [quantity, setQuantity] = useState(0);
+  useEffect(() => {}, []);
   const didDecrement = () => {
     if (quantity > 0) {
       setQuantity((prevState) => prevState - 1);

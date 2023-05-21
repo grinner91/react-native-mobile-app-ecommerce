@@ -25,7 +25,7 @@ export const CustomerProduct = ({ product }) => {
         type: ACTIONS.ADD_TO_CART,
         payload: newCartItem,
       });
-
+      //setQuantity(0);
       //console.log("state after add to cart: ", state.cart);
     }
   };

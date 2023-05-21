@@ -8,6 +8,7 @@ export const ACTIONS = {
   SIGN_IN: "SIGN_IN",
   SIGN_OUT: "SIGN_OUT",
   ADD_TO_CART: "ADD_TO_CART",
+  REMOVE_FROM_CART: "REMOVE_FROM_CART",
   RESET_CART: "RESET_CART",
   SET_STATE: "SET_STATE",
 };
@@ -35,6 +36,11 @@ export function reducer(state, action) {
         (c) => c.product._id !== action.payload.product._id
       );
       return { ...state, cart: [...filteredCart, action.payload] };
+    case ACTIONS.REMOVE_FROM_CART:
+      const updatedCart = state.cart.filter(
+        (c) => c.product._id !== action.payload.product._id
+      );
+      return { ...state, cart: [...updatedCart] };
     //
     case ACTIONS.RESET_CART:
       return { ...state, cart: [] };
