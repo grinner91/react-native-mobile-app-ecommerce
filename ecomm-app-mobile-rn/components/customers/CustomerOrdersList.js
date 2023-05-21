@@ -14,16 +14,10 @@ export const CustomerOrdersList = (props) => {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchKey, setSearchKey] = useState("");
+  const [refreshOrders, setRefreshOrders] = useState(false);
   useEffect(() => {
     fetchOrdersList();
-    // retrieveUser()
-    //   .then((data) => {
-    //     setUser(data);
-    //     console.log("CustomerOrdersList Orders: user ", data);
-    //     fetchOrdersList();
-    //   })
-    //   .catch();
-  }, [reload]);
+  }, [reload, refreshOrders]);
 
   const fetchOrdersList = async () => {
     // if (user && user._id) {
@@ -39,6 +33,9 @@ export const CustomerOrdersList = (props) => {
     // } else {
     //   console.log("CustomerOrdersList usr: ", state);
     // }
+  };
+  const onOrderUpdated = () => {
+    setRefreshOrders(!refreshOrders);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -63,7 +60,9 @@ export const CustomerOrdersList = (props) => {
       />
       <FlatList
         data={filteredOrders}
-        renderItem={({ item }) => <CustomerOrder order={item} />}
+        renderItem={({ item }) => (
+          <CustomerOrder order={item} onOrderUpdated={onOrderUpdated} />
+        )}
       ></FlatList>
     </SafeAreaView>
   );

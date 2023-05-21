@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addProduct,
+  addProductReviewFeedback,
   deleteProduct,
   getAllProducts,
   updateProduct,
@@ -12,5 +13,6 @@ productsRouter.get("/", getAllProducts);
 productsRouter.post("/", addProduct);
 productsRouter.put("/:product_id", updateProduct);
 productsRouter.delete("/:product_id", deleteProduct);
+productsRouter.put("/:product_id/review/feedbacks", addProductReviewFeedback);
 
 export default productsRouter;

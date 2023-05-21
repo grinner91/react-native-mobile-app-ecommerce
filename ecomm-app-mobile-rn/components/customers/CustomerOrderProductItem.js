@@ -15,6 +15,9 @@ export const CustomerOrderProductItem = ({ product }) => {
   const onShowReviewUI = () => {
     setIsWrittingReview(!isWrittingReview);
   };
+  const onReviewSaved = () => {
+    setIsWrittingReview(!isWrittingReview);
+  };
   return (
     <View style={[{ flexDirection: "column" }]}>
       {product.pictures && product.pictures.length > 0 ? (
@@ -38,7 +41,14 @@ export const CustomerOrderProductItem = ({ product }) => {
           <Text style={styles.buttonText}>Review</Text>
         </TouchableHighlight>
       </View>
-      {isWrittingReview ? <CustomerProductReview product={product} /> : ""}
+      {isWrittingReview ? (
+        <CustomerProductReview
+          product={product}
+          onReviewSaved={onReviewSaved}
+        />
+      ) : (
+        ""
+      )}
     </View>
   );
 };

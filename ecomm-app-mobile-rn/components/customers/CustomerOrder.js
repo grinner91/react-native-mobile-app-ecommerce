@@ -6,7 +6,7 @@ import { CustomerOrderProductItem } from "./CustomerOrderProductItem";
 import { updateOrderRequest } from "../../services/orders.http";
 import { ORDER_STATUS } from "../../common/constants";
 
-export const CustomerOrder = ({ order }) => {
+export const CustomerOrder = ({ order, onOrderUpdated }) => {
   useEffect(() => {
     //
   }, []);
@@ -15,11 +15,12 @@ export const CustomerOrder = ({ order }) => {
     updateOrderRequest(order._id, orderStatus)
       .then((res) => {
         console.log("updateOrderStatusPress res: ", res);
+        onOrderUpdated();
       })
       .catch((err) => console.log("updateOrderStatusPress err: ", err));
   };
 
-  const orderStatusUI = () => {
+  const orderStatusActionsUI = () => {
     if (order.status == ORDER_STATUS.CANCELED) {
       return (
         <TouchableHighlight
@@ -76,7 +77,7 @@ export const CustomerOrder = ({ order }) => {
           ""
         )}
       </View>
-      {orderStatusUI()}
+      {orderStatusActionsUI()}
     </View>
   );
 };
