@@ -84,16 +84,15 @@ export async function getUserById(req, res, next) {
 
 export async function updateUser(req, res, next) {
   try {
-    // if (!req.user) {
-    //   throw new Error("JWT verification is failed. JWT token is required.");
-    // }
     const { user_id } = req.params;
     console.log("udateUser() - user_id: ", user_id);
+    console.log("udateUser() - req.body: ", { ...req.body });
     const result = await UserModel.findOneAndUpdate(
       { _id: new mongoose.Types.ObjectId(user_id) },
       { ...req.body },
       { new: true }
     );
+    console.log("updateUser result: ", result);
     res.json({ sucess: true, data: result });
   } catch (error) {
     next(error);

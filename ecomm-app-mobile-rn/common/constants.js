@@ -30,3 +30,8 @@ export const AUTH_PAGE = {
   SIGNUP: "singup",
   PROFILE: "profile",
 };
+
+export const USER_STATUS = {
+  DISABLED: "disable",
+  ENABLED: "enable",
+};

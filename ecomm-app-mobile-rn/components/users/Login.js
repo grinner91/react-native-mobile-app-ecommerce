@@ -68,6 +68,7 @@ export const Login = () => {
             placeholder="email"
             value={user.email}
             inputMode="email"
+            autoCapitalize="none"
             onChangeText={(text) =>
               setUser((prevState) => ({ ...prevState, email: text }))
             }
@@ -77,6 +78,7 @@ export const Login = () => {
             placeholder="password"
             value={user.password}
             textContentType="password"
+            autoCapitalize="none"
             onChangeText={(text) =>
               setUser((prevState) => ({ ...prevState, password: text }))
             }

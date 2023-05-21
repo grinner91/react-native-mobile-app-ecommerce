@@ -50,6 +50,7 @@ export const CustomerOrdersList = (props) => {
       <Text style={styles.title2}>My Orders </Text>
       <TextInput
         placeholder="search"
+        autoCapitalize="none"
         onChangeText={(text) => {
           setSearchKey(text);
           setFilteredOrders(

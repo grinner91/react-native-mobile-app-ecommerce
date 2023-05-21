@@ -83,6 +83,7 @@ export const Signup = () => {
         <View>
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="email"
             value={user.email}
             onChangeText={(text) =>
@@ -92,6 +93,7 @@ export const Signup = () => {
           <TextInput
             style={styles.input}
             placeholder="password"
+            autoCapitalize="none"
             value={user.password}
             textContentType="password"
             onChangeText={(text) =>
@@ -100,6 +102,7 @@ export const Signup = () => {
           />
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="full name"
             value={user.fullname}
             onChangeText={(text) =>
@@ -111,6 +114,7 @@ export const Signup = () => {
           <Text>Address details: </Text>
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="street address"
             value={user.address}
             onChangeText={(text) =>
@@ -119,7 +123,9 @@ export const Signup = () => {
           />
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="phone number"
+            keyboardType="phone-pad"
             value={user.phone}
             onChangeText={(text) =>
               setUser((prevState) => ({ ...prevState, phone: text }))
@@ -127,6 +133,7 @@ export const Signup = () => {
           />
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="city "
             value={user.city}
             onChangeText={(text) =>
@@ -135,6 +142,7 @@ export const Signup = () => {
           />
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="state"
             value={user.state}
             onChangeText={(text) =>
@@ -143,6 +151,7 @@ export const Signup = () => {
           />
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="zip code "
             value={user.zipcode}
             onChangeText={(text) =>
@@ -151,6 +160,7 @@ export const Signup = () => {
           />
           <TextInput
             style={styles.input}
+            autoCapitalize="none"
             placeholder="country "
             value={user.country}
             onChangeText={(text) =>

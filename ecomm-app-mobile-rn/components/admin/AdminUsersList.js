@@ -1,46 +1,61 @@
 import { Text, SafeAreaView, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { FlatList, TextInput } from "react-native-gesture-handler";
-import { AdminProduct } from "./AdminProduct.js";
-import { fetchAllProducts } from "../../services/products.http.js";
+
 import { styles } from "../../styles/styles.js";
+import { AdminUserItem } from "./AdminUserItem.js";
+import { fetchAllUsers } from "../../services/users.http.js";
 
 export const AdminUsersList = (props) => {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchKey, setSearchKey] = useState("");
+  const [refreshUsers, setRefreshUsers] = useState(false);
   useEffect(() => {
-    fetchAllProducts()
-      .then((data) => {
-        //console.log("ProductsList products: ", data);
-        setProducts(data);
-        setFilteredProducts(data);
+    fetchAllUsers()
+      .then((res) => {
+        //console.log("AdminUsersList users: ", res);
+        setUsers(res.data);
+        setFilteredUsers(res.data);
       })
       .catch((error) => {
-        console.log("err: ", error);
+        console.log("AdminUsersList err: ", error);
       });
-  }, []);
+  }, [refreshUsers]);
+
+  const onUserStatusUpdated = () => {
+    setRefreshUsers(!refreshUsers);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View>{/* <Text>Products</Text> */}</View>
+      <View>
+        <Text>Users</Text>
+      </View>
       <TextInput
         placeholder="search"
+        autoCapitalize="none"
         onChangeText={(text) => {
           setSearchKey(text);
-          setFilteredProducts(
-            products.filter((prod) =>
-              prod.name.toLowerCase().includes(searchKey.toLowerCase())
+          setFilteredUsers(
+            users.filter((user) =>
+              user.fullname.toLowerCase().includes(searchKey.toLowerCase())
             )
           );
           if (text == "") {
-            setFilteredProducts(products);
+            setFilteredUsers(users);
           }
         }}
         style={styles.searchInput}
       />
       <FlatList
-        data={filteredProducts}
-        renderItem={({ item }) => <AdminProduct product={item} />}
+        data={filteredUsers}
+        renderItem={({ item }) => (
+          <AdminUserItem
+            user={item}
+            onUserStatusUpdated={onUserStatusUpdated}
+          />
+        )}
       ></FlatList>
     </SafeAreaView>
   );

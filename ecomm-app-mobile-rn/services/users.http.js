@@ -6,9 +6,8 @@ export const sendLoginRequest = async (email, password) => {
       email,
       password,
     });
-    const json = response;
-    console.log("sendLoginRequest json: ", json.data);
-    return json.data;
+    console.log("sendLoginRequest json: ", response.data);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -19,9 +18,35 @@ export const sendSignupRequest = async (newUser) => {
     const response = await getSecureHttp().post("/api/v1/users/signup", {
       ...newUser,
     });
-    const json = response;
-    console.log("sendSignupRequest json: ", json);
-    return json.data;
+
+    console.log("sendSignupRequest json: ", response);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchAllUsers = async () => {
+  try {
+    const response = await getSecureHttp().get("/api/v1/users");
+    console.log("fetchAllUsers json: ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateUserRequest = async (userId, data) => {
+  try {
+    const url = `/api/v1/users/${userId}`;
+    console.log("updateUserStatusRequest: ", url, ", data: ", {
+      ...data,
+    });
+    const response = await getSecureHttp().put(url, {
+      ...data,
+    });
+    console.log("updateUserStatusRequest res: ", response.data);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
