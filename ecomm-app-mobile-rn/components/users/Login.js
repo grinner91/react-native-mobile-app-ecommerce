@@ -67,6 +67,7 @@ export const Login = () => {
             style={styles.input}
             placeholder="email"
             value={user.email}
+            inputMode="email"
             onChangeText={(text) =>
               setUser((prevState) => ({ ...prevState, email: text }))
             }

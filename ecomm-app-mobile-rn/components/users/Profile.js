@@ -57,11 +57,12 @@ export const Profile = () => {
     <SafeAreaView>
       <Header />
       <View style={styles.content}>
+        {/* 
         {profileInfoUI()}
         <Login />
-        {singupActionUI()}
-        {/* {state.isLoggedin ? profileInfoUI() : <Login />}
-        {state.isLoggedin ? "" : singupActionUI()} */}
+        {singupActionUI()} */}
+        {state.isLoggedin ? profileInfoUI() : <Login />}
+        {state.isLoggedin ? "" : singupActionUI()}
       </View>
     </SafeAreaView>
   );
