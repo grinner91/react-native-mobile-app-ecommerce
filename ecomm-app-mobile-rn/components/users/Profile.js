@@ -29,10 +29,12 @@ export const Profile = () => {
     console.log("profileInfoUI: ", state.user);
     if (state.user && state.user.fullname) {
       return (
-        <View style={[]}>
-          <Text style={styles.title3}>Wellcome {state.user.fullname}</Text>
-          <Text> emai: {state.user.email}</Text>
-          <Text> role: {state.user.role}</Text>
+        <View>
+          <View style={[]}>
+            <Text style={styles.title3}>Wellcome {state.user.fullname}</Text>
+            <Text> emai: {state.user.email}</Text>
+            <Text> role: {state.user.role}</Text>
+          </View>
         </View>
       );
     } else {

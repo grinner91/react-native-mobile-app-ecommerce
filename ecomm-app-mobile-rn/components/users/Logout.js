@@ -41,9 +41,12 @@ export const Logout = () => {
             {user && user.fullname ? user.fullname : ""}
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => onLogoutPress()}>
-          <MaterialCommunityIcons name="logout" size={20} />
-          {/* <Text style={{ paddingLeft: 10 }}>logout</Text> */}
+        <TouchableHighlight
+          style={styles.logout}
+          onPress={() => onLogoutPress()}
+        >
+          {/* <MaterialCommunityIcons name="logout" size={20} /> */}
+          <Text>Logout</Text>
         </TouchableHighlight>
       </View>
     );

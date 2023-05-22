@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     //backgroundColor: "#fff8dc",
     alignSelf: "stretch",
     marginBottom: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   title3: {
     fontSize: 16,
@@ -120,5 +120,12 @@ export const styles = StyleSheet.create({
     borderColor: "#00bfff",
     borderWidth: 1,
     textDecorationLine: "underline",
+  },
+  logout: {
+    borderColor: "#00bfee",
+    //backgroundColor: "#00bfff",
+    textAlign: "center",
+    borderBottomWidth: 1,
+    fontWeight: "bold",
   },
 });
