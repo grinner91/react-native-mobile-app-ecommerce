@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View } from "react-native";
+import { Text, SafeAreaView, View, TouchableHighlight } from "react-native";
 import { styles } from "../../styles/styles.js";
-import { TouchableHighlight } from "react-native-gesture-handler";
 
 export const CartItem = ({ item, onRemoveCartItem }) => {
   //console.log("CartItem: ", item);

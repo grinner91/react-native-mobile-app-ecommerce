@@ -1,8 +1,15 @@
-import { Text, SafeAreaView, View, TouchableHighlight } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  View,
+  TouchableHighlight,
+  FlatList,
+  TextInput,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "../styles/styles";
 import { fetchAllProducts } from "../services/products.http";
-import { FlatList, TextInput } from "react-native-gesture-handler";
+//import { FlatList, TextInput } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { CustomerProduct } from "./CustomerProduct.js";
 import Header from "./Header.ios";

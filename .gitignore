@@ -128,3 +128,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+ecomm-app-mobile-rn/common/aws.s3.config.js
+ecomm-app-mobile-rn/components/admin/PhotoUploadAwsS3.js

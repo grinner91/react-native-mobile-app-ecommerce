@@ -1,14 +1,15 @@
-import { Text, SafeAreaView, View } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
 import {
+  Text,
+  SafeAreaView,
+  View,
   FlatList,
   TextInput,
   TouchableHighlight,
-} from "react-native-gesture-handler";
+} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import { fetchAllProducts } from "../../services/products.http";
 import { styles } from "../../styles/styles";
 import { AdminProduct } from "./AdminProduct";
-import Header from "../Header.ios";
 import { useNavigation } from "@react-navigation/native";
 import { AdminContext } from "../../common/admin.context";
 
@@ -32,9 +33,9 @@ export const AdminProductsList = (props) => {
       });
   }, [reloadProducts]);
 
-  // const onProductSaved = () => {
-  //   setRefreshProducts(!refreshProducts);
-  // };
+  const onProductSaved = () => {
+    setRefreshProducts(!refreshProducts);
+  };
 
   return (
     <SafeAreaView style={styles.container}>

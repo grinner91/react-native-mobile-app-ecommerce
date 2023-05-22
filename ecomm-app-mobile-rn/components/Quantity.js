@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
-import { View } from "react-native";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { Text, TouchableHighlight, View } from "react-native";
 import { styles } from "../styles/styles";
 
 export const Quantity = ({ onQuantityChange }) => {

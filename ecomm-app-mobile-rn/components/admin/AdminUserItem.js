@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableHighlight } from "react-native";
 import { updateUserRequest } from "../../services/users.http";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { styles } from "../../styles/styles.js";
 import { USER_TYPE } from "../../common/constants";
 

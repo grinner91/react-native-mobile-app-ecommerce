@@ -113,6 +113,7 @@ export const styles = StyleSheet.create({
     width: 350,
     fontSize: 20,
     fontWeight: "bold",
+    height: 50,
   },
   reviewButton: {
     marginLeft: 10,
@@ -129,4 +130,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   sorticon: { margin: 5, height: 40 },
+  submitButtonText: {
+    //backgroundColor: "#ffffaa",
+  },
 });

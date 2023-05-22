@@ -1,4 +1,3 @@
-import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AUTH_PAGE } from "../../common/constants";
 import { Logout } from "./Logout";

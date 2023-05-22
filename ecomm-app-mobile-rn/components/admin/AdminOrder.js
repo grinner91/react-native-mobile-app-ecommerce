@@ -1,6 +1,5 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, FlatList, TouchableHighlight } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { FlatList, TouchableHighlight } from "react-native-gesture-handler";
 
 import { ORDER_STATUS } from "../../common/constants";
 import { AdminOrderProductItem } from "./AdminOrderProductItem";

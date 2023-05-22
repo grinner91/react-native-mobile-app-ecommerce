@@ -1,6 +1,5 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableHighlight } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../../styles/styles.js";
 import { deleteProductRequest } from "../../services/products.http.js";

@@ -1,6 +1,5 @@
-import { Text, SafeAreaView, Alert } from "react-native";
+import { Text, SafeAreaView, Alert, FlatList, TextInput } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { FlatList, TextInput } from "react-native-gesture-handler";
 import { CustomerOrder } from "./CustomerOrder";
 import { styles } from "../../styles/styles";
 import Header from "../Header.ios";

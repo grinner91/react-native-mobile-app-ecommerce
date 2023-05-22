@@ -1,4 +1,3 @@
-import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CartList } from "./CartList";
 import { CartCheckout } from "./CartCheckout";

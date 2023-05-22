@@ -1,7 +1,12 @@
-import { Text, TouchableHighlight, View, SafeAreaView } from "react-native";
+import {
+  Text,
+  TouchableHighlight,
+  View,
+  SafeAreaView,
+  FlatList,
+} from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { FlatList } from "react-native-gesture-handler";
 import { ACTIONS, AppContext } from "../../common/app.context.js";
 import { CartItem } from "./CartItem.js";
 import { styles } from "../../styles/styles.js";

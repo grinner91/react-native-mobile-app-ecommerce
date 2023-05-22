@@ -1,10 +1,9 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, View, TouchableHighlight } from "react-native";
 import { styles } from "../../styles/styles";
 import { Login } from "./Login";
 import { AUTH_PAGE } from "../../common/constants";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../common/app.context";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../Header.ios";
 

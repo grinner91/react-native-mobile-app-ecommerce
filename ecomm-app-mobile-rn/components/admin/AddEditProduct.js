@@ -11,6 +11,7 @@ import {
 import { styles } from "../../styles/styles";
 import { saveProductRequest } from "../../services/products.http";
 import { AdminContext } from "../../common/admin.context";
+import { PhotoUploadAwsS3 } from "./PhotoUploadAwsS3";
 
 export const AddEditProduct = ({ route }) => {
   const navigation = useNavigation();
@@ -91,7 +92,7 @@ export const AddEditProduct = ({ route }) => {
           setState((prevState) => ({ ...prevState, price: text }))
         }
       />
-
+      {/* <PhotoUploadAwsS3 /> */}
       <TouchableHighlight style={[styles.button]} onPress={() => onSubmit()}>
         <Text style={styles.submitButtonText}>Save</Text>
       </TouchableHighlight>

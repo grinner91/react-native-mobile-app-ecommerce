@@ -1,5 +1,4 @@
 import { Image, Text, View } from "react-native";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import { styles } from "../../styles/styles";
 

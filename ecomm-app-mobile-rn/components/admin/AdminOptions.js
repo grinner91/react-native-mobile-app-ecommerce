@@ -1,7 +1,7 @@
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 import { styles } from "../../styles/styles";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableHighlight } from "react-native"; //"react-native-gesture-handler";
 
 export const AdminOptions = () => {
   const navigation = useNavigation();

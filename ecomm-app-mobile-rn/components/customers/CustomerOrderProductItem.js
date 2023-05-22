@@ -1,6 +1,5 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, TouchableHighlight } from "react-native";
 import { styles } from "../../styles/styles";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import { CustomerProductReview } from "./CustomerProductReview";
 import Stars from "../Stars";

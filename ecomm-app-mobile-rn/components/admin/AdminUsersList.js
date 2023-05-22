@@ -1,6 +1,5 @@
-import { Text, SafeAreaView, View } from "react-native";
+import { Text, SafeAreaView, View, FlatList, TextInput } from "react-native";
 import React, { useEffect, useState } from "react";
-import { FlatList, TextInput } from "react-native-gesture-handler";
 
 import { styles } from "../../styles/styles.js";
 import { AdminUserItem } from "./AdminUserItem.js";

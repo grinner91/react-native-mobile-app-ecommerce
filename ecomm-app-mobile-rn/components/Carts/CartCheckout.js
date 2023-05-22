@@ -1,11 +1,16 @@
-import { Alert, SafeAreaView, Text, View } from "react-native";
+import {
+  Alert,
+  SafeAreaView,
+  Text,
+  View,
+  TouchableHighlight,
+} from "react-native";
 import { styles } from "../../styles/styles.js";
 // import { StripeProvider, CardField } from "@stripe/stripe-react-native";
 import {
   CUSTOMERS_PAGE,
   STRIPE_PUBLBISHABLE_KEY,
 } from "../../common/constants.js";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { StackActions, useNavigation } from "@react-navigation/native";
 import { useContext, useEffect, useState } from "react";
 import { createCustomerOrder } from "../../common/utils.js";

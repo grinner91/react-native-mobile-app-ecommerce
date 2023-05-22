@@ -1,7 +1,6 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableHighlight } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { styles } from "../styles/styles";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import { Quantity } from "./Quantity";
 import { AppContext, ACTIONS } from "../common/app.context.js";
 import Stars from "./Stars";
