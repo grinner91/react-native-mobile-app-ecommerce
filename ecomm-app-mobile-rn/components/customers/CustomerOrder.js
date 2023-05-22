@@ -43,6 +43,17 @@ export const CustomerOrder = ({ order, onOrderUpdated }) => {
           <Text style={styles.buttonText}>Cancel</Text>
         </TouchableHighlight>
       );
+    } else if (order.status == ORDER_STATUS.DELIVERED) {
+      return (
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            updateOrderStatusPress(ORDER_STATUS.RETURNED);
+          }}
+        >
+          <Text style={styles.buttonText}>Return</Text>
+        </TouchableHighlight>
+      );
     } else {
       return <Text>{order.status}</Text>;
     }
@@ -51,12 +62,11 @@ export const CustomerOrder = ({ order, onOrderUpdated }) => {
   return (
     <View style={[styles.content]}>
       <View style={{ flexDirection: "column" }}>
-        <Text>
-          {" "}
-          {" Placed on " + new Date(order.time).toLocaleDateString()}
+        <Text styles={styles.title3}>
+          {"Placed on " + new Date(order.time).toLocaleDateString()}
         </Text>
-        <Text> {" Total $" + order.total}</Text>
-        <Text> {" status: " + order.status}</Text>
+        <Text> {"Total $" + order.total}</Text>
+        <Text> {"Status: " + order.status}</Text>
       </View>
 
       <View

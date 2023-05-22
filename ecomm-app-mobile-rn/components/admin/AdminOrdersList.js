@@ -22,7 +22,7 @@ export const AdminOrdersList = (props) => {
     if (state.user) {
       fetchAllOrders()
         .then((res) => {
-          console.log("AdminOrdersList Orders: ", res.data);
+          //console.log("AdminOrdersList Orders: ", res.data);
           setOrders(res.data);
           setFilteredOrders(res.data);
         })
@@ -31,7 +31,7 @@ export const AdminOrdersList = (props) => {
         });
     } else {
       Alert.alert("Please, login to see orders list.");
-      console.log("AdminOrdersList usr: ", state);
+      //console.log("AdminOrdersList usr: ", state);
       setFilteredOrders([]);
       setOrders([]);
     }

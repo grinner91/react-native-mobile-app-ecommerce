@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import { useState, useEffect } from "react";
+import { useNavigation, StackActions } from "@react-navigation/native";
+import { useState, useEffect, useContext } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import {
@@ -9,42 +9,59 @@ import {
   TouchableHighlight,
 } from "react-native";
 import { styles } from "../../styles/styles";
+import { saveProductRequest } from "../../services/products.http";
+import { AdminContext } from "../../common/admin.context";
 
 export const AddEditProduct = ({ route }) => {
   const navigation = useNavigation();
+  const { reloadProducts, setReloadProducts } = useContext(AdminContext);
   const { product } = route.params;
   const [state, setState] = useState({
-    name: "",
-    category: "",
-    price: 0.0,
+    name: "iPhone 14",
+    category: "mobile",
+    price: "899",
     submitting: false,
   });
 
   useEffect(() => {
     if (product) {
-      setState({ ...product });
+      setState({ ...product, price: "" + product.price });
+      console.log("AddEditProduct: ", { ...product });
     }
   }, []);
 
   const onSubmit = () => {
-    //setState((prevState) => ({ ...prevState, submitting: true }));
+    setState((prevState) => ({ ...prevState, submitting: true }));
     if (state.name && state.price && state.category) {
       //
-      const product = {
+      let newProduct = {
         name: state.name,
-        price: state.price,
+        price: parseFloat(state.price),
         category: state.category,
       };
+      if (product) {
+        newProduct = { ...product, ...newProduct };
+      }
+
       //save to database
-
-      //navigate to Product list
-
-      navigation.navigate("AdminProductsList");
+      saveProductRequest(newProduct)
+        .then((res) => {
+          //navigate to Product list
+          if (res.success) {
+            //console.log("saveProductRequest res: ", res);
+            setReloadProducts(!reloadProducts);
+            const popAction = StackActions.pop(1);
+            navigation.dispatch(popAction);
+          }
+        })
+        .catch((err) => {
+          console.log("AddEditProduct err: ", err);
+        });
     }
 
-    // setTimeout(() => {
-    //   setState((prevState) => ({ ...prevState, submitting: false }));
-    // }, 1000);
+    setTimeout(() => {
+      setState((prevState) => ({ ...prevState, submitting: false }));
+    }, 1000);
   };
   return (
     <KeyboardAwareScrollView style={styles.root}>
@@ -59,6 +76,7 @@ export const AddEditProduct = ({ route }) => {
       <TextInput
         style={styles.input}
         placeholder="category"
+        autoCapitalize="none"
         value={state.category}
         onChangeText={(text) =>
           setState((prevState) => ({ ...prevState, category: text }))
@@ -66,12 +84,14 @@ export const AddEditProduct = ({ route }) => {
       />
       <TextInput
         style={styles.input}
-        value={state.price}
         placeholder="price"
+        autoCapitalize="none"
+        value={state.price}
         onChangeText={(text) =>
           setState((prevState) => ({ ...prevState, price: text }))
         }
       />
+
       <TouchableHighlight style={[styles.button]} onPress={() => onSubmit()}>
         <Text style={styles.submitButtonText}>Save</Text>
       </TouchableHighlight>

@@ -22,6 +22,7 @@ export const ORDER_STATUS = {
   CANCELED: "canceled",
   ORDERED: "ordered",
   DELIVERED: "delivered",
+  RETURNED: "returned",
 };
 
 export const AUTH_PAGE = {

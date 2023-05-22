@@ -3,9 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../../styles/styles.js";
+import { deleteProductRequest } from "../../services/products.http.js";
+import { AdminContext } from "../../common/admin.context.js";
 
 export const AdminProduct = ({ product }) => {
   const navigation = useNavigation();
+  const { reloadProducts, setReloadProducts } = useContext(AdminContext);
   useEffect(() => {
     //console.log("product details: ", product);
   }, []);
@@ -14,18 +17,32 @@ export const AdminProduct = ({ product }) => {
     navigation.navigate("AddEditProduct", { product });
   };
 
-  const onDelete = () => {};
-
-  const imageUri =
-    "https://i5.walmartimages.com/asr/52a8a553-1dc9-4263-af1f-c8750bbf7605.b950d0f9a7eb260800e691affbc1e553.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF ";
+  const onDelete = () => {
+    if (product && product._id) {
+      deleteProductRequest(product._id)
+        .then((res) => {
+          if (res.success) {
+            setReloadProducts(!reloadProducts);
+          }
+        })
+        .catch((err) => console.log("AdminProduct delete err: ", err));
+    }
+  };
 
   return (
     <View style={[styles.content]}>
       <View style={{ flexDirection: "row" }}>
-        <Image source={{ uri: imageUri }} style={styles.imagePreview} />
+        {product.pictures && product.pictures.length > 0 ? (
+          <Image
+            source={{ uri: product.pictures[0] }}
+            style={styles.imagePreview}
+          />
+        ) : (
+          ""
+        )}
         <View style={{ flexDirection: "column" }}>
           <Text style={styles.title2}> {" " + product.name}</Text>
-          <Text> {" price " + product.price}</Text>
+          <Text> {"price $" + product.price}</Text>
         </View>
       </View>
       <View style={[{ flexDirection: "row" }]}>

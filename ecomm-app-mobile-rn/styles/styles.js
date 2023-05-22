@@ -54,6 +54,7 @@ export const styles = StyleSheet.create({
     //backgroundColor: "#fff8dc",
     alignSelf: "stretch",
     marginBottom: 5,
+    marginLeft: 5
   },
   title3: {
     fontSize: 16,
