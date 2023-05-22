@@ -57,15 +57,26 @@ export const CartList = (props) => {
           keyExtractor={(item) => item.product._id}
         />
         <View>
-          <Text style={styles.input}>{"Total: $" + total}</Text>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => {
-              onCheckout();
-            }}
-          >
-            <Text style={styles.buttonText}>Checkout</Text>
-          </TouchableHighlight>
+          {cartItems && cartItems.length == 0 ? (
+            <Text>No item in the cart</Text>
+          ) : (
+            ""
+          )}
+          {cartItems && cartItems.length > 0 ? (
+            <>
+              <Text style={styles.input}>{"Total: $" + total}</Text>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => {
+                  onCheckout();
+                }}
+              >
+                <Text style={styles.buttonText}>Checkout</Text>
+              </TouchableHighlight>
+            </>
+          ) : (
+            ""
+          )}
         </View>
       </View>
     </SafeAreaView>

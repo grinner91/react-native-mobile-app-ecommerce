@@ -8,21 +8,25 @@ const Stack = createNativeStackNavigator();
 
 export const CartStackNav = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen
         name="CartList"
         component={CartList}
-        options={{ headerTitle: "Shopping Cart" }}
+        //options={{ headerTitle: "" }}
       />
       <Stack.Screen
         name="CartCheckout"
         component={CartCheckout}
-        options={{ headerTitle: "Checkout" }}
+        //options={{ headerTitle: "Checkout" }}
       />
       <Stack.Screen
         name="CartShippingAddress"
         component={CartShippingAddress}
-        options={{ headerTitle: "Shipping Address" }}
+        //options={{ headerTitle: "Shipping Address" }}
       />
     </Stack.Navigator>
   );

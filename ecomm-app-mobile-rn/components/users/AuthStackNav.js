@@ -10,7 +10,12 @@ const Stack = createNativeStackNavigator();
 
 export const AuthStackNav = () => {
   return (
-    <Stack.Navigator initialRouteName={AUTH_PAGE.PROFILE}>
+    <Stack.Navigator
+      initialRouteName={AUTH_PAGE.PROFILE}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen
         name={AUTH_PAGE.PROFILE}
         component={Profile}

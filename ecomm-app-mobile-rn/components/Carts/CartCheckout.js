@@ -1,6 +1,6 @@
 import { Alert, SafeAreaView, Text, View } from "react-native";
 import { styles } from "../../styles/styles.js";
-import { StripeProvider, CardField } from "@stripe/stripe-react-native";
+// import { StripeProvider, CardField } from "@stripe/stripe-react-native";
 import {
   CUSTOMERS_PAGE,
   STRIPE_PUBLBISHABLE_KEY,
@@ -59,13 +59,13 @@ export const CartCheckout = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text>Checkout</Text>
-        <StripeProvider publishableKey={STRIPE_PUBLBISHABLE_KEY}>
+        {/* <StripeProvider publishableKey={STRIPE_PUBLBISHABLE_KEY}>
           <CardField
             postalCodeEnabled={true}
             autofocus
             style={styles.cardField}
           />
-        </StripeProvider>
+        </StripeProvider> */}
         <TouchableHighlight
           style={[styles.button, { alignSelf: "stretch" }]}
           onPress={() => {

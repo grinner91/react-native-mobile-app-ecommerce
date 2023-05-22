@@ -55,7 +55,7 @@ export const Profile = () => {
     );
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Header />
       <View style={styles.content}>
         {state.isLoggedin ? profileInfoUI() : <Login />}
