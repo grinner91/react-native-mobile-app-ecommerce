@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "../../styles/styles.js";
 import { deleteProductRequest } from "../../services/products.http.js";
 import { AdminContext } from "../../common/admin.context.js";
+import Stars from "../Stars.js";
 
 export const AdminProduct = ({ product }) => {
   const navigation = useNavigation();
@@ -29,6 +30,16 @@ export const AdminProduct = ({ product }) => {
     }
   };
 
+  const showReviewScoreUI = () => {
+    if (product && product.review && product.review.score)
+      return (
+        <Stars
+          {...{ rating: product.review.score, total: product.review.score }}
+        />
+      );
+    else return "";
+  };
+
   return (
     <View style={[styles.content]}>
       <View style={{ flexDirection: "row" }}>
@@ -40,9 +51,10 @@ export const AdminProduct = ({ product }) => {
         ) : (
           ""
         )}
-        <View style={{ flexDirection: "column" }}>
-          <Text style={styles.title2}> {" " + product.name}</Text>
+        <View style={{ flexDirection: "column", marginLeft: 10 }}>
+          <Text style={styles.title2}> {product.name}</Text>
           <Text> {"price $" + product.price}</Text>
+          {showReviewScoreUI()}
         </View>
       </View>
       <View style={[{ flexDirection: "row" }]}>

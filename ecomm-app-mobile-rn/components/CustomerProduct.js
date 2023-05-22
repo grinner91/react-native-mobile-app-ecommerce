@@ -4,6 +4,7 @@ import { styles } from "../styles/styles";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { Quantity } from "./Quantity";
 import { AppContext, ACTIONS } from "../common/app.context.js";
+import Stars from "./Stars";
 
 export const CustomerProduct = ({ product }) => {
   const { state, dispatch } = useContext(AppContext);
@@ -34,6 +35,17 @@ export const CustomerProduct = ({ product }) => {
     setQuantity(value);
   };
 
+  const showReviewScoreUI = () => {
+    if (product && product.review && product.review.score) {
+      //console.log("showReviewScoreUI stars: " + product.review.score);
+      return (
+        <Stars
+          {...{ rating: product.review.score, total: product.review.score }}
+        />
+      );
+    } else return "";
+  };
+
   return (
     <View style={[styles.content]}>
       <View style={{ flexDirection: "row" }}>
@@ -47,8 +59,9 @@ export const CustomerProduct = ({ product }) => {
         )}
 
         <View style={{ flexDirection: "column" }}>
-          <Text style={styles.title2}> {" " + product.name}</Text>
-          <Text> {" price " + product.price}</Text>
+          <Text style={styles.title2}> {product.name}</Text>
+          <Text> {"Price $" + product.price}</Text>
+          {showReviewScoreUI()}
         </View>
       </View>
       <View style={[{ flexDirection: "row" }]}>

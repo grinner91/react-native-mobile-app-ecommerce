@@ -18,7 +18,7 @@ export const AdminProductsList = (props) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchKey, setSearchKey] = useState("");
-  const [refreshProducts, setRefreshProducts] = useState(false);
+  //const [refreshProducts, setRefreshProducts] = useState(false);
   useEffect(() => {
     console.log("AdminProductsList");
     fetchAllProducts()
@@ -30,11 +30,11 @@ export const AdminProductsList = (props) => {
       .catch((error) => {
         console.log("AdminProductsList err: ", error);
       });
-  }, [refreshProducts, reloadProducts]);
+  }, [reloadProducts]);
 
-  const onProductSaved = () => {
-    setRefreshProducts(!refreshProducts);
-  };
+  // const onProductSaved = () => {
+  //   setRefreshProducts(!refreshProducts);
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -67,9 +67,7 @@ export const AdminProductsList = (props) => {
       />
       <FlatList
         data={filteredProducts}
-        renderItem={({ item }) => (
-          <AdminProduct product={item} onProductSaved={onProductSaved} />
-        )}
+        renderItem={({ item }) => <AdminProduct product={item} />}
       ></FlatList>
     </SafeAreaView>
   );

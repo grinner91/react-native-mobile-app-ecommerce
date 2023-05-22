@@ -7,7 +7,7 @@ const productSchema = new Schema({
   price: Number,
   pictures: [],
   review: {
-    score: Number, //average of all stars
+    score: { type: Number, default: 0 }, //average of all stars
     feedbacks: [
       {
         stars: Number, //1, 2, 3, 4, 5
@@ -18,7 +18,7 @@ const productSchema = new Schema({
   time: { type: Date, default: Date.now },
 });
 
-productSchema.index({ title: 1 });
+productSchema.index({ name: 1, category: 1 });
 
 const ProductModel = model("Product", productSchema);
 

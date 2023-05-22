@@ -13,10 +13,7 @@ export const fetchAllProducts = async () => {
 export const addProductReview = async (product, review) => {
   try {
     const url = `/api/v1/products/${product._id}/review/feedbacks`;
-    const response = await getSecureHttp().put(url, {
-      stars: review.rating,
-      comment: review.comment,
-    });
+    const response = await getSecureHttp().put(url, { ...review });
     //console.log(" fetchAllProducts json: ", json.data);
     return response.data;
   } catch (error) {

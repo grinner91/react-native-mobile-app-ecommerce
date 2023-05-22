@@ -3,6 +3,7 @@ import { styles } from "../../styles/styles";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import { CustomerProductReview } from "./CustomerProductReview";
+import Stars from "../Stars";
 
 export const CustomerOrderProductItem = ({ product }) => {
   //console.log("product item: ", product);
@@ -15,6 +16,16 @@ export const CustomerOrderProductItem = ({ product }) => {
   };
   const onReviewSaved = () => {
     setIsWrittingReview(!isWrittingReview);
+  };
+
+  const showReviewScoreUI = () => {
+    if (product && product.review && product.review.score > 0) {
+      return (
+        <Stars
+          {...{ rating: product.review.score, total: product.review.score }}
+        />
+      );
+    } else return "";
   };
   return (
     <View>
@@ -33,6 +44,7 @@ export const CustomerOrderProductItem = ({ product }) => {
           <Text style={styles.title3}>{product.name}</Text>
           <Text>{"price $" + product.price}</Text>
           <Text>{"quantity: " + product.quantity}</Text>
+          <Text> stars {showReviewScoreUI()}</Text>
           <TouchableHighlight
             style={styles.reviewButton}
             onPress={() => {
