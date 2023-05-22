@@ -29,8 +29,7 @@ export const Profile = () => {
     console.log("profileInfoUI: ", state.user);
     if (state.user && state.user.fullname) {
       return (
-        <View style={[styles.content2]}>
-          <Text>Welcome</Text>
+        <View style={[]}>
           <Text style={styles.title3}>Wellcome {state.user.fullname}</Text>
           <Text> emai: {state.user.email}</Text>
           <Text> role: {state.user.role}</Text>
@@ -57,10 +56,6 @@ export const Profile = () => {
     <SafeAreaView>
       <Header />
       <View style={styles.content}>
-        {/* 
-        {profileInfoUI()}
-        <Login />
-        {singupActionUI()} */}
         {state.isLoggedin ? profileInfoUI() : <Login />}
         {state.isLoggedin ? "" : singupActionUI()}
       </View>

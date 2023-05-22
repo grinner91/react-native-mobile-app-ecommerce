@@ -62,7 +62,7 @@ export const Login = () => {
   return (
     <SafeAreaView>
       <KeyboardAwareScrollView>
-        <View style={styles.content}>
+        <View>
           <TextInput
             style={styles.input}
             placeholder="email"
