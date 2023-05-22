@@ -90,6 +90,7 @@ export default function App() {
               ),
             }}
           />
+
           <Tab.Screen
             name="admin"
             component={AdminStackNav}
@@ -103,6 +104,7 @@ export default function App() {
               ),
             }}
           />
+
           <Tab.Screen
             name="Profile"
             component={AuthStackNav}

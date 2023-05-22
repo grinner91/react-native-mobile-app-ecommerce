@@ -1,3 +1,5 @@
+import { USER_TYPE } from "./constants";
+
 export const createCustomerOrder = (userId, cart, payment = "card") => {
   const newOrder = {
     userId: userId,
@@ -36,7 +38,9 @@ export const createUpdatedStateObj = (prevState, loggedinUser) => {
     },
     token: loggedinUser.jwt,
     isLoggedin: true,
+    isAdmin: loggedinUser.role === USER_TYPE.ADMIN ? true : false,
   };
+
   return updatedState;
 };
 
