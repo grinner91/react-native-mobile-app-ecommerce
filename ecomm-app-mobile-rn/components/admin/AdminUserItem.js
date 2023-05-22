@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import { updateUserRequest } from "../../services/users.http";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { styles } from "../../styles/styles.js";
+import { USER_TYPE } from "../../common/constants";
 
 export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
   //console.log("AdminUserItem user: ", user);
@@ -16,6 +17,15 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
         onUserStatusUpdated();
       })
       .catch((err) => console.log("updateOrderStatusPress err: ", err));
+  };
+
+  const updateUserRolePress = (userRole) => {
+    updateUserRequest(user._id, { role: userRole })
+      .then((res) => {
+        console.log("updateUserRolePress res: ", res);
+        onUserStatusUpdated();
+      })
+      .catch((err) => console.log("updateUserRolePress err: ", err));
   };
 
   const userStatusActionsUI = () => {
@@ -43,12 +53,42 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
       );
     }
   };
+
+  const showUserAdminActionUI = () => {
+    if (user.role === USER_TYPE.CUSTOMER) {
+      return (
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            updateUserRolePress(USER_TYPE.ADMIN);
+          }}
+        >
+          <Text style={styles.buttonText}>Make Admin</Text>
+        </TouchableHighlight>
+      );
+    } else if (
+      user.role === USER_TYPE.ADMIN &&
+      !user.email.includes(USER_TYPE.ADMIN)
+    ) {
+      return (
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            updateUserRolePress(USER_TYPE.CUSTOMER);
+          }}
+        >
+          <Text style={styles.buttonText}>Make Customer</Text>
+        </TouchableHighlight>
+      );
+    } else return "";
+  };
   return (
     <View style={[styles.content]}>
       <Text style={styles.title3}> {user.fullname}</Text>
       <Text> {user.email}</Text>
       <Text> {user.role}</Text>
       {userStatusActionsUI()}
+      {showUserAdminActionUI()}
     </View>
   );
 };
