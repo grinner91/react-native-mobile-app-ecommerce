@@ -15,6 +15,7 @@ const Stars = ({ rating, total, onSelectStar }) => {
   );
   if (!total || total <= 0) total = 5;
   total = Math.ceil(total);
+  rating = Math.ceil(rating);
   const stars = [...Array(total)];
   const [starColor, seStarColor] = useState("#FFD64C");
   const [startSelectIndex, setStarSelect] = useState(rating);

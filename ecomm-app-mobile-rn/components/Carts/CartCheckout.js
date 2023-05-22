@@ -6,7 +6,7 @@ import {
   STRIPE_PUBLBISHABLE_KEY,
 } from "../../common/constants.js";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
 import { useContext, useEffect, useState } from "react";
 import { createCustomerOrder } from "../../common/utils.js";
 import { retrieveUser } from "../../common/app.localstore.js";
@@ -43,6 +43,8 @@ export const CartCheckout = () => {
         .then((res) => {
           //console.log("checkoutOrderRequest res: ", res);
           dispatch({ type: ACTIONS.RESET_CART });
+          Alert.alert("Your order is placed successfully!");
+          navigation.dispatch(StackActions.pop(1));
           navigation.navigate(CUSTOMERS_PAGE.ORDER_LIST);
         })
         .catch((err) => {

@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
 
-    width: 350,
+    width: 300,
   },
   title: {
     fontSize: 30,

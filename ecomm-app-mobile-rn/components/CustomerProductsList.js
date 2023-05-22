@@ -1,8 +1,9 @@
-import { Text, SafeAreaView, View } from "react-native";
+import { Text, SafeAreaView, View, TouchableHighlight } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "../styles/styles";
 import { fetchAllProducts } from "../services/products.http";
 import { FlatList, TextInput } from "react-native-gesture-handler";
+import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { CustomerProduct } from "./CustomerProduct.js";
 import Header from "./Header.ios";
 
@@ -10,6 +11,7 @@ export const CustomerProductsList = (props) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchKey, setSearchKey] = useState("");
+  const [ascSort, setAscSort] = useState(false);
   useEffect(() => {
     fetchAllProducts()
       .then((res) => {
@@ -21,24 +23,51 @@ export const CustomerProductsList = (props) => {
         console.log("err: ", error);
       });
   }, []);
+  const onSort = (asc) => {
+    //console.log("asc sort: ", asc);
+    let list = [...filteredProducts];
+    if (asc) {
+      list = list.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+        else if (b.name.toLowerCase() > a.name.toLowerCase()) return 1;
+        else return 0;
+      });
+    } else {
+      list = list.sort((a, b) => {
+        if (b.name.toLowerCase() < a.name.toLowerCase()) return -1;
+        else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        else return 0;
+      });
+    }
+    setFilteredProducts(list);
+    setAscSort(asc);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <TextInput
-        placeholder="search"
-        onChangeText={(text) => {
-          setSearchKey(text);
-          setFilteredProducts(
-            products.filter((prod) =>
-              prod.name.toLowerCase().includes(searchKey.toLowerCase())
-            )
-          );
-          if (text == "") {
-            setFilteredProducts(products);
-          }
-        }}
-        style={styles.searchInput}
-      />
+      <View style={{ flexDirection: "row" }}>
+        <TouchableHighlight
+          style={[styles.button, { margin: 10, padding: 10 }]}
+          onPress={() => onSort(!ascSort)}
+        >
+          <MaterialCommunityIcons name="sort" size={20} />
+        </TouchableHighlight>
+        <TextInput
+          placeholder="search"
+          onChangeText={(text) => {
+            setSearchKey(text);
+            setFilteredProducts(
+              products.filter((prod) =>
+                prod.name.toLowerCase().includes(searchKey.toLowerCase())
+              )
+            );
+            if (text == "") {
+              setFilteredProducts(products);
+            }
+          }}
+          style={styles.searchInput}
+        />
+      </View>
       <FlatList
         data={filteredProducts}
         renderItem={({ item }) => <CustomerProduct product={item} />}

@@ -24,8 +24,10 @@ export const CustomerOrdersList = (props) => {
       fetchAllOrdersByUser(state.user._id)
         .then((res) => {
           //console.log("CustomerOrdersList Orders: ", res.data);
-          setOrders(res.data);
-          setFilteredOrders(res.data);
+          const list = res.data;
+          list.sort((a, b) => new Date(b.time) - new Date(a.time));
+          setOrders(list);
+          setFilteredOrders(list);
         })
         .catch((error) => {
           console.log("CustomerOrdersList err: ", error);
