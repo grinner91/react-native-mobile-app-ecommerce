@@ -36,11 +36,11 @@ export const styles = StyleSheet.create({
   searchInput: {
     borderColor: "#00bfff",
     height: 40,
-    margin: 12,
+    margin: 5,
     borderWidth: 1,
     padding: 10,
 
-    width: 300,
+    width: 310,
   },
   title: {
     fontSize: 30,
@@ -128,4 +128,5 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     fontWeight: "bold",
   },
+  sorticon: { margin: 5, height: 40 },
 });

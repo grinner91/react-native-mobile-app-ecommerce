@@ -45,9 +45,9 @@ export const CustomerProductsList = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", padding: 5 }}>
         <TouchableHighlight
-          style={[styles.button, { margin: 10, padding: 10 }]}
+          style={[styles.button, styles.sorticon]}
           onPress={() => onSort(!ascSort)}
         >
           <MaterialCommunityIcons name="sort" size={20} />
