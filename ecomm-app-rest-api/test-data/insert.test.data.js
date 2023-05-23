@@ -147,9 +147,9 @@ async function insertOrders() {
         orders.push({ ...orderItem });
       });
     });
-    products.forEach((p) => {
-      console.log("product: ", p);
-    });
+    // products.forEach((p) => {
+    //   console.log("product: ", p);
+    // });
     // console.log("users: ", users);
     // console.log("prods: ", products);
     await OrderModel.insertMany([...orders]);
