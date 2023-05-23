@@ -21,6 +21,7 @@ connectProductsDb()
     //TODO remove test data
     clearAllTestData().then((res) => {
       insertTestAllData();
+      //
     });
     //
   })

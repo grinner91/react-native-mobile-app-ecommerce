@@ -162,13 +162,14 @@ async function insertOrders() {
 function createOrder(user, prodList) {
   const l = 0;
   const h = prodList.length - 1;
+
   const p1 = { ...prodList[randNum(l, h)] };
   p1.quantity = randNum(1, 10);
-  p1.total = p1.quantity * p1.price;
+  p1.total = randNum(100, 500); 
 
   const p2 = { ...prodList[randNum(l, h)] };
   p2.quantity = randNum(1, 10);
-  p2.total = p2.quantity * p2.price;
+  p2.total = randNum(100, 500);
 
   const order = {
     _id: new mongoose.Types.ObjectId(),
@@ -176,6 +177,7 @@ function createOrder(user, prodList) {
     products: [{ ...p1 }, { ...p2 }],
     payment: "card",
     status: "ordered",
+    total: randNum(555, 999),
   };
   return order;
 }
