@@ -6,6 +6,10 @@ import productsRouter from "./routers/products.router.js";
 import usersRouter from "./routers/users.router.js";
 import ordersRouter from "./routers/orders.router.js";
 import { authUser } from "./middlewares/user.autherization.js";
+import {
+  clearAllTestData,
+  insertTestAllData,
+} from "./test-data/insert.test.data.js";
 
 const app = express();
 app.use(cors());
@@ -14,7 +18,11 @@ app.use(express.json());
 connectProductsDb()
   .then((res) => {
     console.log("db connection res: ", res);
-    //insertProductData();
+    //TODO remove test data
+    clearAllTestData().then((res) => {
+      insertTestAllData();
+    });
+    //
   })
   .catch((err) => {
     console.log("db connection err: ", err);

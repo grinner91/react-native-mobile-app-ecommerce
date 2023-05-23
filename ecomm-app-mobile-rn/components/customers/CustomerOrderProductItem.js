@@ -18,6 +18,10 @@ export const CustomerOrderProductItem = ({ product }) => {
   };
 
   const showReviewScoreUI = () => {
+    console.log(
+      "showReviewScoreUI product.review.score: ",
+      product.review.score
+    );
     if (product && product.review && product.review.score > 0) {
       return (
         <Stars
@@ -43,7 +47,7 @@ export const CustomerOrderProductItem = ({ product }) => {
           <Text style={styles.title3}>{product.name}</Text>
           <Text>{"price $" + product.price}</Text>
           <Text>{"quantity: " + product.quantity}</Text>
-          <Text> stars {showReviewScoreUI()}</Text>
+          {/* <Text> stars {showReviewScoreUI()}</Text> */}
           <TouchableHighlight
             style={styles.reviewButton}
             onPress={() => {

@@ -6,12 +6,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
+    marginTop: 20,
     padding: 10,
   },
   list: {
     borderColor: "#00bfff",
     borderWidth: 0,
+    borderRadius: 5,
     alignSelf: "stretch",
     width: 300,
   },
@@ -30,17 +31,19 @@ export const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
+    borderRadius: 5,
     padding: 10,
     alignSelf: "stretch",
   },
   searchInput: {
     borderColor: "#00bfff",
     height: 40,
-    margin: 5,
+    margin: 20,
+    marginTop: 8,
     borderWidth: 1,
+    borderRadius: 5,
     padding: 10,
-
-    width: 310,
+    alignSelf: "stretch",
   },
   title: {
     fontSize: 30,
@@ -66,7 +69,9 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     backgroundColor: "#f0ffff",
     borderColor: "#00bfff",
+
     borderWidth: 1,
+    borderRadius: 5,
     margin: 2,
     alignSelf: "stretch",
     width: 350,
@@ -78,6 +83,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f0ffff",
     borderColor: "#00bfff",
     borderWidth: 1,
+    borderRadius: 5,
     margin: 2,
     alignSelf: "stretch",
 
@@ -88,12 +94,14 @@ export const styles = StyleSheet.create({
     width: 100,
     borderColor: "#00bfff",
     borderWidth: 2,
+    borderRadius: 5,
     marginBottom: 2,
   },
   quantity: {
     borderColor: "#00bfff",
     backgroundColor: "#f0ffff",
     borderWidth: 1,
+    borderRadius: 5,
   },
   cardField: {
     fontSize: 16,
@@ -102,6 +110,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f0ffff",
     borderColor: "#00bfff",
     borderWidth: 1,
+    borderRadius: 5,
     margin: 2,
     height: 100,
     marginVertical: 30,
@@ -111,15 +120,23 @@ export const styles = StyleSheet.create({
   },
   adminOptions: {
     width: 350,
+    height: 50,
     fontSize: 20,
     fontWeight: "bold",
-    height: 50,
+    textAlign: "center",
+    textAlignVertical: "center",
+    margin: 10,
+  },
+  adminColor: {
+    backgroundColor: "#f0ffff",
+    borderColor: "#00bfff",
   },
   reviewButton: {
     marginLeft: 10,
     backgroundColor: "#00bfee",
     borderColor: "#00bfff",
     borderWidth: 1,
+    borderRadius: 5,
     textDecorationLine: "underline",
   },
   logout: {
@@ -129,8 +146,14 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     fontWeight: "bold",
   },
-  sorticon: { margin: 5, height: 40 },
+  sorticon: { marginBottom: 15, height: 40 },
   submitButtonText: {
     //backgroundColor: "#ffffaa",
   },
 });
+
+/*
+gray (`#808080`)
+mediumorchid (`#ba55d3`)
+mediumpurple (`#9370db`)
+*/

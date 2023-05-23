@@ -28,6 +28,10 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
   };
 
   const userStatusActionsUI = () => {
+    if (user.role === USER_TYPE.ADMIN && user.email.includes(USER_TYPE.ADMIN)) {
+      return "";
+    }
+
     if (user.disable) {
       return (
         <TouchableHighlight

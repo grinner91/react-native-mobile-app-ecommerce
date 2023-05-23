@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import {
   ActivityIndicator,
   Alert,
+  KeyboardAvoidingView,
   Text,
   TextInput,
   TouchableHighlight,
@@ -15,6 +16,7 @@ import { ACTIONS, AppContext } from "../../common/app.context.js";
 import { CUSTOMERS_PAGE } from "../../common/constants.js";
 import { createUpdatedStateObj } from "../../common/utils.js";
 import { sendSignupRequest } from "../../services/users.http.js";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Signup = () => {
   const navigation = useNavigation();
@@ -78,109 +80,112 @@ export const Signup = () => {
   };
 
   return (
-    <KeyboardAwareScrollView style={styles.root}>
-      <View>
-        <View>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="email"
-            value={user.email}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, email: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="password"
-            autoCapitalize="none"
-            value={user.password}
-            textContentType="password"
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, password: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="full name"
-            value={user.fullname}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, fullname: text }))
-            }
-          />
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView>
+        <View style={styles.content}>
+          <Text style={styles.title2}>Sign up</Text>
+          <View>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="email"
+              value={user.email}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, email: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="password"
+              autoCapitalize="none"
+              value={user.password}
+              textContentType="password"
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, password: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="full name"
+              value={user.fullname}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, fullname: text }))
+              }
+            />
+          </View>
+          <View>
+            <Text>Address details: </Text>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="street address"
+              value={user.address}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, address: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="phone number"
+              keyboardType="phone-pad"
+              value={user.phone}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, phone: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="city "
+              value={user.city}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, city: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="state"
+              value={user.state}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, state: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="zip code "
+              value={user.zipcode}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, zipcode: text }))
+              }
+            />
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              placeholder="country "
+              value={user.country}
+              onChangeText={(text) =>
+                setUser((prevState) => ({ ...prevState, country: text }))
+              }
+            />
+          </View>
+          <View>
+            <TouchableHighlight
+              style={[styles.button]}
+              onPress={() => onSignupPress()}
+            >
+              <Text style={styles.submitButtonText}>Signup</Text>
+            </TouchableHighlight>
+          </View>
+          {user.isSubmitting ? (
+            <ActivityIndicator size="large" color="#0000ff" />
+          ) : null}
         </View>
-        <View>
-          <Text>Address details: </Text>
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="street address"
-            value={user.address}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, address: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="phone number"
-            keyboardType="phone-pad"
-            value={user.phone}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, phone: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="city "
-            value={user.city}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, city: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="state"
-            value={user.state}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, state: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="zip code "
-            value={user.zipcode}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, zipcode: text }))
-            }
-          />
-          <TextInput
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="country "
-            value={user.country}
-            onChangeText={(text) =>
-              setUser((prevState) => ({ ...prevState, country: text }))
-            }
-          />
-        </View>
-        <View>
-          <TouchableHighlight
-            style={[styles.button]}
-            onPress={() => onSignupPress()}
-          >
-            <Text style={styles.submitButtonText}>Signup</Text>
-          </TouchableHighlight>
-        </View>
-        {user.isSubmitting ? (
-          <ActivityIndicator size="large" color="#0000ff" />
-        ) : null}
-      </View>
-    </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 /*

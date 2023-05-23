@@ -72,7 +72,7 @@ export const CustomerProductsList = (props) => {
               setFilteredProducts(products);
             }
           }}
-          style={styles.searchInput}
+          style={[styles.searchInput, styles.content2]}
         />
       </View>
       <FlatList

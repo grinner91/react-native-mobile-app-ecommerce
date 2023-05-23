@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import {
   ActivityIndicator,
+  Image,
   Text,
   TextInput,
   TouchableHighlight,
@@ -92,7 +93,8 @@ export const AddEditProduct = ({ route }) => {
           setState((prevState) => ({ ...prevState, price: text }))
         }
       />
-      {/* <PhotoUploadAwsS3 /> */}
+     
+      <PhotoUploadAwsS3 />
       <TouchableHighlight style={[styles.button]} onPress={() => onSubmit()}>
         <Text style={styles.submitButtonText}>Save</Text>
       </TouchableHighlight>

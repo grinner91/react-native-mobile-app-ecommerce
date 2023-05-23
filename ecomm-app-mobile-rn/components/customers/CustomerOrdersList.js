@@ -68,7 +68,8 @@ export const CustomerOrdersList = (props) => {
         renderItem={({ item }) => (
           <CustomerOrder order={item} onOrderUpdated={onOrderUpdated} />
         )}
-      ></FlatList>
+        keyExtractor={(item) => item._id}
+      />
     </SafeAreaView>
   );
 };

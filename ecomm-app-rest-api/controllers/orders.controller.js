@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import ProductModel from "../models/product.model.js";
 import { prepareSuccessResponse } from "../utils.js";
 import OrderModel from "../models/order.model.js";
 

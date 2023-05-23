@@ -19,23 +19,3 @@ const orderSchema = new Schema({
 
 const OrderModel = model("Order", orderSchema);
 export default OrderModel;
-
-/*
-Order
-{
-    _id: ObjectId,
-    userId: ObjectId,
-    products: [
-        {
-            name: String,
-            price: Number,
-            quantity: Number
-        }
-    ],
-    total: Number, // sum of all (product.price * quantity)
-    payment: String, //card or cash
-    time: String,
-    status: String, //ordered, delivered, or canceled
-}
-
-*/
