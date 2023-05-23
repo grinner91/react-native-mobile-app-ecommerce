@@ -65,6 +65,8 @@ export const Signup = () => {
             dispatch({ type: ACTIONS.SIGN_IN, payload: updatedState });
             onLoggedin(); //App reload
             navigation.navigate(CUSTOMERS_PAGE.PRODUCTS_LIST);
+          } else {
+            Alert.alert(res.data.msg);
           }
         })
         .catch((err) => {
@@ -81,7 +83,7 @@ export const Signup = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView>
+      <KeyboardAwareScrollView>
         <View style={styles.content}>
           <Text style={styles.title2}>Sign up</Text>
           <View>
@@ -184,7 +186,7 @@ export const Signup = () => {
             <ActivityIndicator size="large" color="#0000ff" />
           ) : null}
         </View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

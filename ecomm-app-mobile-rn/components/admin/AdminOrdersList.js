@@ -61,7 +61,7 @@ export const AdminOrdersList = (props) => {
             setFilteredOrders(orders);
           }
         }}
-        style={styles.searchInput}
+        style={[styles.searchInput, styles.adminColor]}
       />
       <FlatList
         data={filteredOrders}

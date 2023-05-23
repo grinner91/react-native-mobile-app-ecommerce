@@ -29,7 +29,7 @@ export const AdminUsersList = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text>Users</Text>
+        <Text style={styles.title3}>All Users</Text>
       </View>
       <TextInput
         placeholder="search"
@@ -45,7 +45,7 @@ export const AdminUsersList = (props) => {
             setFilteredUsers(users);
           }
         }}
-        style={styles.searchInput}
+        style={[styles.searchInput, styles.adminColor]}
       />
       <FlatList
         data={filteredUsers}

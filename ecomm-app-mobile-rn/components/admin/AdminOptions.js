@@ -8,23 +8,23 @@ export const AdminOptions = () => {
   return (
     <SafeAreaView style={[styles.container]}>
       <TouchableHighlight
-        style={[styles.button, styles.adminOptions]}
+        style={[styles.button, styles.adminOptions, styles.adminColor]}
         onPress={() => {
           navigation.navigate("AdminUsersList");
         }}
       >
-        <Text style={styles.submitButtonText}>Users</Text>
+        <Text style={[styles.submitButtonText]}>Users</Text>
       </TouchableHighlight>
       <TouchableHighlight
-        style={[styles.button, styles.adminOptions]}
+        style={[styles.button, styles.adminOptions, styles.adminColor]}
         onPress={() => {
           navigation.navigate("AdminProductsList");
         }}
       >
-        <Text style={styles.submitButtonText}>Products</Text>
+        <Text style={[styles.submitButtonText]}>Products</Text>
       </TouchableHighlight>
       <TouchableHighlight
-        style={[styles.button, styles.adminOptions]}
+        style={[styles.button, styles.adminOptions, styles.adminColor]}
         onPress={() => {
           navigation.navigate("AdminOrdersList");
         }}

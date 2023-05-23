@@ -26,15 +26,15 @@ export const AdminOrder = ({ order, onOrderUpdated }) => {
       return (
         <>
           <TouchableHighlight
-            style={styles.button}
+            style={[styles.button, styles.adminColor]}
             onPress={() => {
               updateOrderStatusPress(ORDER_STATUS.CANCELED);
             }}
           >
-            <Text style={styles.buttonText}>Cancel</Text>
+            <Text style={[styles.buttonText]}>Cancel</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            style={styles.button}
+            style={[styles.button, styles.adminColor]}
             onPress={() => {
               updateOrderStatusPress(ORDER_STATUS.DELIVERED);
             }}
@@ -47,7 +47,7 @@ export const AdminOrder = ({ order, onOrderUpdated }) => {
       return (
         <>
           <TouchableHighlight
-            style={styles.button}
+            style={[styles.button, styles.adminColor]}
             onPress={() => {
               updateOrderStatusPress(ORDER_STATUS.ORDERED);
             }}
@@ -62,7 +62,7 @@ export const AdminOrder = ({ order, onOrderUpdated }) => {
   };
 
   return (
-    <View style={[styles.content]}>
+    <View style={[styles.content, styles.adminColor]}>
       <View style={{ flexDirection: "column" }}>
         <Text>
           {" "}
@@ -75,6 +75,7 @@ export const AdminOrder = ({ order, onOrderUpdated }) => {
       <View
         style={[
           styles.content2,
+          styles.adminColor,
           { flexDirection: "column", alignItems: "center" },
         ]}
       >

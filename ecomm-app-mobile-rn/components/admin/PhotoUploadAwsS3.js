@@ -108,7 +108,7 @@ export const PhotoUploadAwsS3 = () => {
 
           <TouchableOpacity
             activeOpacity={0.5}
-            style={styles.button}
+            style={[styles.button, styles.adminColor]}
             onPress={uploadPhotoFile}
           >
             <Text style={styles.submitButtonText}>Upload Photo</Text>
@@ -120,7 +120,7 @@ export const PhotoUploadAwsS3 = () => {
       ) : null}
       <TouchableOpacity
         activeOpacity={0.5}
-        style={styles.button}
+        style={[styles.button, styles.adminColor]}
         onPress={selectPhotoFile}
       >
         <Text style={styles.title3}>Select Photo</Text>

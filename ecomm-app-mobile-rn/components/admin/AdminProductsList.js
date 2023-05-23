@@ -41,7 +41,12 @@ export const AdminProductsList = (props) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title2}>All Products</Text>
       <TouchableHighlight
-        style={[styles.content, styles.button, { alignSelf: "stretch" }]}
+        style={[
+          styles.content,
+          styles.button,
+          styles.adminColor,
+          { alignSelf: "stretch" },
+        ]}
         onPress={() => {
           navigation.navigate("AddEditProduct", {
             product: null,
@@ -64,7 +69,7 @@ export const AdminProductsList = (props) => {
             setFilteredProducts(products);
           }
         }}
-        style={styles.searchInput}
+        style={[styles.searchInput, styles.adminColor]}
       />
       <FlatList
         data={filteredProducts}

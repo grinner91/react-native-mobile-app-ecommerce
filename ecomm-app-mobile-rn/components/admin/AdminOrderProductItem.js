@@ -12,7 +12,7 @@ export const AdminOrderProductItem = ({ product }) => {
       {product.pictures && product.pictures.length > 0 ? (
         <Image
           source={{ uri: product.pictures[0] }}
-          style={styles.imagePreview}
+          style={[styles.imagePreview, styles.adminColor]}
         />
       ) : (
         ""

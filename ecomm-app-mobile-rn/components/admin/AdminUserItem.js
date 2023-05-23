@@ -35,7 +35,7 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
     if (user.disable) {
       return (
         <TouchableHighlight
-          style={styles.button}
+          style={[styles.button, styles.adminColor]}
           onPress={() => {
             updateUserStatusPress(false);
           }}
@@ -46,7 +46,7 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
     } else {
       return (
         <TouchableHighlight
-          style={styles.button}
+          style={[styles.button, styles.adminColor]}
           onPress={() => {
             updateUserStatusPress(true);
           }}
@@ -61,7 +61,7 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
     if (user.role === USER_TYPE.CUSTOMER) {
       return (
         <TouchableHighlight
-          style={styles.button}
+          style={[styles.button, styles.adminColor]}
           onPress={() => {
             updateUserRolePress(USER_TYPE.ADMIN);
           }}
@@ -75,7 +75,7 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
     ) {
       return (
         <TouchableHighlight
-          style={styles.button}
+          style={[styles.button, styles.adminColor]}
           onPress={() => {
             updateUserRolePress(USER_TYPE.CUSTOMER);
           }}
@@ -86,7 +86,7 @@ export const AdminUserItem = ({ user, onUserStatusUpdated }) => {
     } else return "";
   };
   return (
-    <View style={[styles.content]}>
+    <View style={[styles.content, styles.adminColor]}>
       <Text style={styles.title3}> {user.fullname}</Text>
       <Text> {user.email}</Text>
       <Text> {user.role}</Text>

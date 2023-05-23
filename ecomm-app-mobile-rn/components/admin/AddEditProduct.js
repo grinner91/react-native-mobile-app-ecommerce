@@ -93,9 +93,12 @@ export const AddEditProduct = ({ route }) => {
           setState((prevState) => ({ ...prevState, price: text }))
         }
       />
-     
+
       <PhotoUploadAwsS3 />
-      <TouchableHighlight style={[styles.button]} onPress={() => onSubmit()}>
+      <TouchableHighlight
+        style={[styles.button, styles.adminColor]}
+        onPress={() => onSubmit()}
+      >
         <Text style={styles.submitButtonText}>Save</Text>
       </TouchableHighlight>
       {state.submitting ? (

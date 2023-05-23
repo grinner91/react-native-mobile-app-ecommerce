@@ -86,8 +86,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 2,
     alignSelf: "stretch",
-
-    width: 300,
+    width: 330,
   },
   imagePreview: {
     height: 100,
@@ -128,13 +127,15 @@ export const styles = StyleSheet.create({
     margin: 10,
   },
   adminColor: {
-    backgroundColor: "#f0ffff",
-    borderColor: "#00bfff",
+    backgroundColor: "#bad3",
+    borderColor: "#9370db",
+    borderWidth: 1,
+    borderRadius: 5,
   },
   reviewButton: {
     marginLeft: 10,
     backgroundColor: "#00bfee",
-    borderColor: "#00bfff",
+    borderColor: "#9370db",
     borderWidth: 1,
     borderRadius: 5,
     textDecorationLine: "underline",

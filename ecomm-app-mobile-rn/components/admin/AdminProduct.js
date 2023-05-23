@@ -40,12 +40,12 @@ export const AdminProduct = ({ product }) => {
   };
 
   return (
-    <View style={[styles.content]}>
+    <View style={[styles.content, styles.adminColor]}>
       <View style={{ flexDirection: "row" }}>
         {product.pictures && product.pictures.length > 0 ? (
           <Image
             source={{ uri: product.pictures[0] }}
-            style={styles.imagePreview}
+            style={[styles.imagePreview, styles.adminColor]}
           />
         ) : (
           ""
@@ -58,7 +58,7 @@ export const AdminProduct = ({ product }) => {
       </View>
       <View style={[{ flexDirection: "row" }]}>
         <TouchableHighlight
-          style={styles.button}
+          style={[styles.button, styles.adminColor]}
           onPress={() => {
             onEdit();
           }}
@@ -66,7 +66,7 @@ export const AdminProduct = ({ product }) => {
           <Text style={styles.buttonText}>Edit</Text>
         </TouchableHighlight>
         <TouchableHighlight
-          style={styles.button}
+          style={[styles.button, styles.adminColor]}
           onPress={() => {
             onDelete();
           }}
