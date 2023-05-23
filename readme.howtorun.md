@@ -1,17 +1,17 @@
-1. How to run backend API server ( Node.js, Expressjs, and Mongodb )
+###  1. How to run backend API server ( Node.js, Expressjs, and Mongodb )
 
-### to install all the npm dependecies, run the following commands in terminal
+-> to install all the npm dependecies, run the following commands in terminal
 
-### -- Open VS Code and rest api project directory
+-> Open VS Code and rest api project directory
 
-### -- Run terminal on that directory then
+->  Run terminal on that directory then
 
 1.1. npm install
 1.2. update mongodb connection URL in the file
 
-### const MONGODB_URI = "mongodb://localhost:32768";
+->  const MONGODB_URI = "mongodb://localhost:32768";
 
-### comment test data insertion, if necessary or every time it will clean and insert new data
+->  comment test data insertion, if necessary or every time it will clean and insert new data
 
 //
 in App.js file
@@ -24,11 +24,11 @@ insertTestAllData();
 
 1.3. That's all done :)
 
-2. How to run mobile client app
+### 2. How to run mobile client app
 
-### -- Open VS Code and mobile app project directory
+->  Open VS Code and mobile app project directory
 
-### -- Run terminal on that directory
+->  Run terminal on that directory
 
 2.1.command in terminal: npm install
 2.2.update backend API baseURL in the file
