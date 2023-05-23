@@ -42,9 +42,12 @@ in services/base.http.js file
 
 
 Screenshots: 
-https://github.com/maharishi-university/extra-project-grinner91/blob/main/UI_screenshots/products_list_customer_ui.jpg
+https://github.com/maharishi-university/extra-project-grinner91/blob/main/UI_screenshots/1.products_list_customer_ui.jpg
 
 
-https://github.com/maharishi-university/extra-project-grinner91/blob/main/UI_screenshots/myorders_list_customer_ui.jpg
+https://github.com/maharishi-university/extra-project-grinner91/blob/main/UI_screenshots/2.shopping_cart.jpg
+
+https://github.com/maharishi-university/extra-project-grinner91/blob/main/UI_screenshots/3.myorders_list_customer_ui.jpg
+
 
 
