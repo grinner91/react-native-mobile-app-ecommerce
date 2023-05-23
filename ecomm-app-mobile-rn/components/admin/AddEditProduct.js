@@ -8,6 +8,7 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
+  View,
 } from "react-native";
 import { styles } from "../../styles/styles";
 import { saveProductRequest } from "../../services/products.http";
@@ -66,44 +67,47 @@ export const AddEditProduct = ({ route }) => {
     }, 1000);
   };
   return (
-    <KeyboardAwareScrollView style={styles.root}>
-      <TextInput
-        style={styles.input}
-        placeholder="name"
-        value={state.name}
-        onChangeText={(text) =>
-          setState((prevState) => ({ ...prevState, name: text }))
-        }
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="category"
-        autoCapitalize="none"
-        value={state.category}
-        onChangeText={(text) =>
-          setState((prevState) => ({ ...prevState, category: text }))
-        }
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="price"
-        autoCapitalize="none"
-        value={state.price}
-        onChangeText={(text) =>
-          setState((prevState) => ({ ...prevState, price: text }))
-        }
-      />
+    <KeyboardAwareScrollView>
+      <View styles={[styles.container, styles.adminColor]}>
+        {/* <Text style={styles.title3}>Add/Edit Prduct</Text> */}
+        <TextInput
+          style={[styles.input, styles.adminColor]}
+          placeholder="name"
+          value={state.name}
+          onChangeText={(text) =>
+            setState((prevState) => ({ ...prevState, name: text }))
+          }
+        />
+        <TextInput
+          style={[styles.input, styles.adminColor]}
+          placeholder="category"
+          autoCapitalize="none"
+          value={state.category}
+          onChangeText={(text) =>
+            setState((prevState) => ({ ...prevState, category: text }))
+          }
+        />
+        <TextInput
+          style={[styles.input, styles.adminColor]}
+          placeholder="price"
+          autoCapitalize="none"
+          value={state.price}
+          onChangeText={(text) =>
+            setState((prevState) => ({ ...prevState, price: text }))
+          }
+        />
 
-      <PhotoUploadAwsS3 />
-      <TouchableHighlight
-        style={[styles.button, styles.adminColor]}
-        onPress={() => onSubmit()}
-      >
-        <Text style={styles.submitButtonText}>Save</Text>
-      </TouchableHighlight>
-      {state.submitting ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : null}
+        <PhotoUploadAwsS3 />
+        <TouchableHighlight
+          style={[styles.button, styles.adminColor]}
+          onPress={() => onSubmit()}
+        >
+          <Text style={styles.submitButtonText}>Save</Text>
+        </TouchableHighlight>
+        {state.submitting ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : null}
+      </View>
     </KeyboardAwareScrollView>
   );
 };
