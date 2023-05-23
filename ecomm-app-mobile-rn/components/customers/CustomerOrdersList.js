@@ -1,5 +1,14 @@
-import { Text, SafeAreaView, Alert, FlatList, TextInput } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  Alert,
+  FlatList,
+  TextInput,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
+import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { CustomerOrder } from "./CustomerOrder";
 import { styles } from "../../styles/styles";
 import Header from "../Header.ios";
@@ -44,25 +53,33 @@ export const CustomerOrdersList = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title2}>My Orders </Text>
-      <TextInput
-        placeholder="search"
-        autoCapitalize="none"
-        onChangeText={(text) => {
-          setSearchKey(text);
-          setFilteredOrders(
-            orders.filter((ord) => {
-              const list = ord.products.filter((prod) =>
-                prod.name.toLowerCase().includes(searchKey.toLowerCase())
-              );
-              return list && list.length > 0;
-            })
-          );
-          if (text == "") {
-            setFilteredOrders(orders);
-          }
-        }}
-        style={styles.searchInput}
-      />
+      <View style={{ flexDirection: "row", padding: 5 }}>
+        <TouchableHighlight
+          style={[styles.button, styles.sorticon]}
+          onPress={() => setRefreshOrders(!refreshOrders)}
+        >
+          <MaterialCommunityIcons name="reload" size={20} />
+        </TouchableHighlight>
+        <TextInput
+          placeholder="search"
+          autoCapitalize="none"
+          onChangeText={(text) => {
+            setSearchKey(text);
+            setFilteredOrders(
+              orders.filter((ord) => {
+                const list = ord.products.filter((prod) =>
+                  prod.name.toLowerCase().includes(searchKey.toLowerCase())
+                );
+                return list && list.length > 0;
+              })
+            );
+            if (text == "") {
+              setFilteredOrders(orders);
+            }
+          }}
+          style={[styles.searchInput, { width: 280 }]}
+        />
+      </View>
       <FlatList
         data={filteredOrders}
         renderItem={({ item }) => (

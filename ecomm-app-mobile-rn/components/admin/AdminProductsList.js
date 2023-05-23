@@ -40,37 +40,39 @@ export const AdminProductsList = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title2}>All Products</Text>
-      <TouchableHighlight
-        style={[
-          styles.content,
-          styles.button,
-          styles.adminColor,
-          { alignSelf: "stretch" },
-        ]}
-        onPress={() => {
-          navigation.navigate("AddEditProduct", {
-            product: null,
-            onProductSaved,
-          });
-        }}
-      >
-        <Text style={styles.submitButtonText}>Add Product</Text>
-      </TouchableHighlight>
-      <TextInput
-        placeholder="search"
-        onChangeText={(text) => {
-          setSearchKey(text);
-          setFilteredProducts(
-            products.filter((prod) =>
-              prod.name.toLowerCase().includes(searchKey.toLowerCase())
-            )
-          );
-          if (text == "") {
-            setFilteredProducts(products);
-          }
-        }}
-        style={[styles.searchInput, styles.adminColor]}
-      />
+      <View style={{ marginLeft: 10 }}>
+        <TouchableHighlight
+          style={[
+            styles.content2,
+            styles.button,
+            styles.adminColor,
+            { alignSelf: "stretch" },
+          ]}
+          onPress={() => {
+            navigation.navigate("AddEditProduct", {
+              product: null,
+              onProductSaved,
+            });
+          }}
+        >
+          <Text style={styles.submitButtonText}>Add Product</Text>
+        </TouchableHighlight>
+        <TextInput
+          placeholder="search"
+          onChangeText={(text) => {
+            setSearchKey(text);
+            setFilteredProducts(
+              products.filter((prod) =>
+                prod.name.toLowerCase().includes(searchKey.toLowerCase())
+              )
+            );
+            if (text == "") {
+              setFilteredProducts(products);
+            }
+          }}
+          style={[styles.content2, styles.searchInput, styles.adminColor]}
+        />
+      </View>
       <FlatList
         data={filteredProducts}
         renderItem={({ item }) => <AdminProduct product={item} />}

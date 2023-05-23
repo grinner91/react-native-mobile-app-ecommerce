@@ -20,6 +20,8 @@ import {
   checkoutOrder,
   checkoutOrderRequest,
 } from "../../services/orders.http.js";
+import { CardField, StripeProvider } from "@stripe/stripe-react-native";
+import { fetchPaymentClientSecret } from "../../services/payment.http.js";
 
 export const CartCheckout = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -40,6 +42,10 @@ export const CartCheckout = () => {
   const onPayPress = () => {
     console.log("onPay");
     //TODO
+    //1. get client secret
+    // fetchPaymentClientSecret().then((res) => {
+
+    // });
     //On pay success place order
     if (user && state.cart) {
       const newOrder = createCustomerOrder(user._id, state.cart);
@@ -64,13 +70,13 @@ export const CartCheckout = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text>Checkout</Text>
-        {/* <StripeProvider publishableKey={STRIPE_PUBLBISHABLE_KEY}>
+        <StripeProvider publishableKey={STRIPE_PUBLBISHABLE_KEY}>
           <CardField
             postalCodeEnabled={true}
             autofocus
             style={styles.cardField}
           />
-        </StripeProvider> */}
+        </StripeProvider>
         <TouchableHighlight
           style={[styles.button, { alignSelf: "stretch" }]}
           onPress={() => {

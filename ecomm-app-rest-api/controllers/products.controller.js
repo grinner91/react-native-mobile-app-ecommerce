@@ -22,7 +22,9 @@ export async function addProduct(req, res, next) {
     productBody._id = new mongoose.Types.ObjectId();
     //productBody.time = new Date().toISOString();
     console.log("controller addProduct: ", productBody);
-    //productBody.pictures = generatePictures();
+    if (!productBody.pictures || productBody.pictures.length == 0)
+      productBody.pictures = generatePictures();
+
     const newProduct = new ProductModel(productBody);
     const result = await newProduct.save();
     res.send(prepareSuccessResponse(result));

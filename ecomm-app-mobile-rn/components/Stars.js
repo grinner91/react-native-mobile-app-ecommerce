@@ -5,14 +5,14 @@ import { View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 const Stars = ({ rating, total, onSelectStar }) => {
-  console.log(
-    "rating: ",
-    rating,
-    ", total: ",
-    total,
-    ", onSelectStar: ",
-    onSelectStar
-  );
+  // console.log(
+  //   "rating: ",
+  //   rating,
+  //   ", total: ",
+  //   total,
+  //   ", onSelectStar: ",
+  //   onSelectStar
+  // );
   if (!total || total <= 0) total = 5;
   total = Math.ceil(total);
   rating = Math.ceil(rating);
