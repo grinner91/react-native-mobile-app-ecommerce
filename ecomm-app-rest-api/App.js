@@ -29,9 +29,9 @@ connectProductsDb()
     console.log("db connection err: ", err);
   });
 
-app.use("/api/v1/users", authUser, usersRouter);
-app.use("/api/v1/products", authUser, productsRouter);
-app.use("/api/v1/orders", authUser, ordersRouter);
+app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/products", productsRouter);
+app.use("/api/v1/orders", ordersRouter);
 
 app.use("*", async (req, res, next) => {
   res.status(404);

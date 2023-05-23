@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
+import { JWT_SIGN_SECRET } from "../utils.js";
 const { sign, decode, verify } = jsonwebtoken;
-const JWT_SIGN_SECRET = process.env.JWT_SIGN_SECRET;
 
 export const authUser = async (req, res, next) => {
   try {
@@ -15,18 +15,18 @@ export const authUser = async (req, res, next) => {
         //move to next handlers
         next();
       } else {
-        //throw new Error("JWT verification is failed. JWT token is required.");
+        throw new Error("JWT verification is failed. JWT token is required.");
       }
     } else {
-      //throw new Error("JWT verification is failed. JWT token is required.");
+      throw new Error("JWT verification is failed. JWT token is required.");
     }
     //TODO: remove, dev testing
     //for dev skip this verification
-    next();
+    //next();
   } catch (error) {
     //TODO: remove, dev testing
     //for dev skip this verification
-    next();
-    //next(error);
+    //next();
+    next(error);
   }
 };

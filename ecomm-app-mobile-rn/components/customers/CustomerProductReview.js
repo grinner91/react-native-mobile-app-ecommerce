@@ -6,6 +6,7 @@ import Stars from "../Stars";
 
 export const CustomerProductReview = ({ product, onReviewSaved }) => {
   //console.log("CustomerProductReview item: ", product);
+ 
   const [state, setState] = useState({});
 
   useEffect(() => {

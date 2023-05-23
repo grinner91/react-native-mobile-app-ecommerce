@@ -142,7 +142,7 @@ async function insertOrders() {
     const orders = [];
     users.forEach((u) => {
       //console.log("user: ", u);
-      [...Array(10)].forEach(() => {
+      [...Array(5)].forEach(() => {
         const orderItem = createOrder(u, products);
         orders.push({ ...orderItem });
       });
@@ -165,7 +165,7 @@ function createOrder(user, prodList) {
 
   const p1 = { ...prodList[randNum(l, h)] };
   p1.quantity = randNum(1, 10);
-  p1.total = randNum(100, 500); 
+  p1.total = randNum(100, 500);
 
   const p2 = { ...prodList[randNum(l, h)] };
   p2.quantity = randNum(1, 10);

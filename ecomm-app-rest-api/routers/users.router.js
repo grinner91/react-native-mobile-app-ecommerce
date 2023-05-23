@@ -6,12 +6,13 @@ import {
   singup,
   updateUser,
 } from "../controllers/users.controllers.js";
+import { authUser } from "../middlewares/user.autherization.js";
 
 const usersRouter = express.Router({ mergeParams: true });
 
-usersRouter.get("/", getAllUsers);
-usersRouter.get("/:user_id", getUserById);
-usersRouter.put("/:user_id", updateUser);
+usersRouter.get("/", authUser, getAllUsers);
+usersRouter.get("/:user_id", authUser, getUserById);
+usersRouter.put("/:user_id", authUser, updateUser);
 usersRouter.post("/login", login);
 usersRouter.post("/signup", singup);
 

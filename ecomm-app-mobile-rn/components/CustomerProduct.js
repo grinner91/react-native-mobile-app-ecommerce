@@ -4,10 +4,12 @@ import { styles } from "../styles/styles";
 import { Quantity } from "./Quantity";
 import { AppContext, ACTIONS } from "../common/app.context.js";
 import Stars from "./Stars";
+import { useNavigation } from "@react-navigation/native";
 
 export const CustomerProduct = ({ product }) => {
   const { state, dispatch } = useContext(AppContext);
   const [quantity, setQuantity] = useState(0);
+  const navigation = useNavigation();
   useEffect(() => {
     //console.log("product details: ", product);
   }, []);
@@ -74,9 +76,9 @@ export const CustomerProduct = ({ product }) => {
         >
           <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.button} onPress={() => {}}>
+        {/* <TouchableHighlight style={styles.button} onPress={() => {navigation.push("")}}>
           <Text style={styles.buttonText}>Details</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
       </View>
     </View>
   );

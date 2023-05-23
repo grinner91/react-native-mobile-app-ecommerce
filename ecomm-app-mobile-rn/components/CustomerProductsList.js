@@ -19,6 +19,7 @@ export const CustomerProductsList = (props) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [ascSort, setAscSort] = useState(false);
+  const [reloadProducts, setReloadProducts] = useState(false);
   useEffect(() => {
     fetchAllProducts()
       .then((res) => {
@@ -29,7 +30,7 @@ export const CustomerProductsList = (props) => {
       .catch((error) => {
         console.log("err: ", error);
       });
-  }, []);
+  }, [reloadProducts]);
   const onSort = (asc) => {
     //console.log("asc sort: ", asc);
     let list = [...filteredProducts];
@@ -55,6 +56,12 @@ export const CustomerProductsList = (props) => {
       <View style={{ flexDirection: "row", padding: 5 }}>
         <TouchableHighlight
           style={[styles.button, styles.sorticon]}
+          onPress={() => setReloadProducts(!reloadProducts)}
+        >
+          <MaterialCommunityIcons name="reload" size={20} />
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={[styles.button, styles.sorticon]}
           onPress={() => onSort(!ascSort)}
         >
           <MaterialCommunityIcons name="sort" size={20} />
@@ -72,7 +79,7 @@ export const CustomerProductsList = (props) => {
               setFilteredProducts(products);
             }
           }}
-          style={[styles.searchInput, styles.content2]}
+          style={[styles.searchInput, styles.content2, { width: 260 }]}
         />
       </View>
       <FlatList

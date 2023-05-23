@@ -6,13 +6,14 @@ import {
   getAllOrdersByUserId,
   updateOrder,
 } from "../controllers/orders.controller.js";
+import { authUser } from "../middlewares/user.autherization.js";
 
 const ordersRouter = express.Router({ mergeParams: true });
 
-ordersRouter.get("/", getAllOrders);
-ordersRouter.get("/:user_id", getAllOrdersByUserId);
-ordersRouter.post("/:user_id", addOrder);
-ordersRouter.put("/:order_id", updateOrder);
-ordersRouter.delete("/:order_id", deleteOrder);
+ordersRouter.get("/", authUser, getAllOrders);
+ordersRouter.get("/:user_id", authUser, getAllOrdersByUserId);
+ordersRouter.post("/:user_id", authUser, addOrder);
+ordersRouter.put("/:order_id", authUser, updateOrder);
+ordersRouter.delete("/:order_id", authUser, deleteOrder);
 
 export default ordersRouter;
