@@ -1,0 +1,23 @@
+1. create mobile client app 
+npx create-expo-app ecomm-app-mobile-rn
+
+2. expo start --clear 
+
+
+npm install --save-dev jest-expo
+npm install --save-dev @testing-library/react-native @testing-library/jest-native
+create "__test__" directory in root project directory, it is default name jest run tests from 
+//write tests and run command in project root directory
+npm test
+
+3. expo install @stripe/stripe-react-native
+
+https://dashboard.stripe.com/test/apikeys
+
+RN strip integration 
+https://www.callstack.com/blog/mobile-payment-in-react-native-with-stripe-and-expo
+https://blog.logrocket.com/mastering-stripe-paymentsheet-react-native-expo/
+
+
+MaterialCommunityIcons 
+https://pictogrammers.com/library/mdi/
